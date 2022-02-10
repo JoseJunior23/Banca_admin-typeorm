@@ -1,8 +1,10 @@
 import 'reflect-metadata';
 import cors from 'cors';
 import express from 'express';
+import 'express-async-errors';
 import { isError } from './middlewares/isError';
 import { routes } from './routes/index.routes';
+import '@shared/typeorm/connection';
 
 export const app = express();
 
