@@ -2,6 +2,8 @@
   "compilerOptions": {
     "target": "es2016",
     "lib": ["es6"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "module": "commonjs",
     "rootDir": "src",
     "baseUrl": "./",
@@ -10,6 +12,7 @@
       "@modules/*": ["src/modules/*"],
       "@shared/*": ["src/shared/*"]
     },
+    "typeRoots": ["@types", "./node_modules/@types"],
     "resolveJsonModule": true,
     "allowJs": true,
     "outDir": "build",
@@ -17,6 +20,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": true,
+    "strictPropertyInitialization": false,
     "skipLibCheck": true
   }
 }
