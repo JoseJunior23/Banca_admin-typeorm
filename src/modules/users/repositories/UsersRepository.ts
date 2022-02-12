@@ -5,14 +5,18 @@ import { User } from '../entities/User';
 export class UsersRepository extends Repository<User> {
   public async findByEmail(email: string): Promise<User | undefined> {
     const user = await this.findOne({
-      email,
+      where: {
+        email,
+      },
     });
     return user;
   }
 
   public async findById(id: string): Promise<User | undefined> {
     const user = await this.findOne({
-      id,
+      where: {
+        id,
+      },
     });
     return user;
   }

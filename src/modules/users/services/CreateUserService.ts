@@ -8,14 +8,13 @@ interface IUser {
   email: string;
   password: string;
 }
-
 export class CreateUserService {
   public async execute({ name, email, password }: IUser): Promise<User> {
     const userRepository = getCustomRepository(UsersRepository);
 
-    const userExists = await userRepository.findByEmail(email);
-    if (userExists) {
-      throw new AppError('There is already one user with this email');
+    const emailExists = await userRepository.findByEmail(email);
+    if (emailExists) {
+      throw new AppError('Email address already used');
     }
 
     const user = userRepository.create({

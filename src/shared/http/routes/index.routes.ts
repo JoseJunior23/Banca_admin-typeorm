@@ -1,6 +1,6 @@
-import { userRouter } from '@modules/user/routes/users.routes';
+import { userRouter } from '@modules/users/routes/users.routes';
 import { Router } from 'express';
 
 export const routes = Router();
 
-routes.use('/user', userRouter);
+routes.use('/users', userRouter);

@@ -1,10 +1,11 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
-import { UserController } from '../controllers/UserController';
+import { UsersController } from '../controllers/UsersController';
 
 export const userRouter = Router();
+const usersController = new UsersController();
 
-const usersController = new UserController();
+userRouter.get('/', usersController.index);
 
 userRouter.post(
   '/',
