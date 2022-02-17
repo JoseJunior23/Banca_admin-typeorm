@@ -10,6 +10,6 @@ export class ForgotPasswordController {
       email,
     });
 
-    return response.status(204).json('Token created successfully');
+    return response.status(204).json({ message: 'Token created successfully' });
   }
 }
