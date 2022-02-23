@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { SendForgotPasswordEmailService } from '../services/SendForgotPasswordEmailService';
+import SendForgotPasswordEmailService from '../services/SendForgotPasswordEmailService';
 
 export class ForgotPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -10,6 +10,8 @@ export class ForgotPasswordController {
       email,
     });
 
-    return response.status(204).json({ message: 'Token created successfully' });
+    return response
+      .status(200)
+      .json({ message: 'Token created successfully !!!' });
   }
 }

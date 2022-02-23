@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ResetPasswordService } from '../services/ResetPasswordService';
 
-export default class ResetPasswordController {
+export class ResetPasswordController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { token, password } = request.body;
 
@@ -12,7 +12,7 @@ export default class ResetPasswordController {
     });
 
     return response
-      .status(204)
+      .status(200)
       .json({ message: 'Password successfully recovered' });
   }
 }

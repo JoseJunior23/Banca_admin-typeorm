@@ -6,7 +6,7 @@ import { UserTokensRepository } from '../repositories/UserTokensRepository';
 interface IRequest {
   email: string;
 }
-export class SendForgotPasswordEmailService {
+export default class SendForgotPasswordEmailService {
   public async execute({ email }: IRequest): Promise<void> {
     const usersRepository = getCustomRepository(UsersRepository);
     const userTokensRepository = getCustomRepository(UserTokensRepository);
