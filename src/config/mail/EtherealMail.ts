@@ -22,7 +22,7 @@ interface ISendMail {
   templateData: IParseMailTemplate;
 }
 
-export default class EtherealMail {
+export class EtherealMail {
   static async sendMail({
     to,
     from,
