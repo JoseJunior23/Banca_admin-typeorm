@@ -1,26 +1,28 @@
 import nodemailer from 'nodemailer';
 import { HandlebarsMailTemplate } from './HandlebarsMailTemplate';
 
-interface IContactMail {
+interface IMailContact {
   name: string;
   email: string;
 }
 
-interface IVariable {
+interface ITemplateVariable {
   [key: string]: string | number;
 }
-interface IParseMail {
+
+interface IParseMailTemplate {
   template: string;
-  variables: IVariable;
-}
-interface ISendMail {
-  to: IContactMail;
-  from?: IContactMail;
-  subject: string;
-  templateData: IParseMail;
+  variables: ITemplateVariable;
 }
 
-export class EtherealMail {
+interface ISendMail {
+  to: IMailContact;
+  from?: IMailContact;
+  subject: string;
+  templateData: IParseMailTemplate;
+}
+
+export default class EtherealMail {
   static async sendMail({
     to,
     from,
@@ -28,6 +30,7 @@ export class EtherealMail {
     templateData,
   }: ISendMail): Promise<void> {
     const account = await nodemailer.createTestAccount();
+
     const mailTemplate = new HandlebarsMailTemplate();
 
     const transporter = nodemailer.createTransport({
@@ -39,6 +42,7 @@ export class EtherealMail {
         pass: account.pass,
       },
     });
+
     const message = await transporter.sendMail({
       from: {
         name: from?.name || 'Serviço de recupreção de senha Banca Admin',
