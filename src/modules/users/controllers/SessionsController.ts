@@ -1,3 +1,4 @@
+import { instanceToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { createSessionsService } from '../services/CreateSessionsService';
 
@@ -12,6 +13,6 @@ export class SessionsController {
       password,
     });
 
-    return response.json(user);
+    return response.json(instanceToInstance(user));
   }
 }

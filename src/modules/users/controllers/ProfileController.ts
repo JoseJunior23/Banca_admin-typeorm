@@ -1,3 +1,4 @@
+import { instanceToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { ShowProfileService } from '../services/ShowProfileService';
 import { UpdateProfileService } from '../services/UpdateProfileService';
@@ -25,6 +26,6 @@ export class ProfileController {
       old_password,
     });
 
-    return response.json(user);
+    return response.json(instanceToInstance(user));
   }
 }
