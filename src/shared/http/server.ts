@@ -7,6 +7,7 @@ import { isError } from './middlewares/isError';
 import { routes } from './routes/index.routes';
 import '@shared/typeorm/connection';
 import upload from '@config/upload';
+import { errors } from 'celebrate';
 
 export const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(upload.directory));
 app.use(routes);
+app.use(errors());
 
 app.use(isError);
 app.listen(3333, () => {
