@@ -19,6 +19,16 @@ workSessionsRouter.post(
   workSessionsController.create,
 );
 
+workSessionsRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  workSessionsController.show,
+);
+
 workSessionsRouter.put(
   '/:id',
   celebrate({
