@@ -32,3 +32,13 @@ workSessionsRouter.put(
   }),
   workSessionsController.update,
 );
+
+workSessionsRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  workSessionsController.delete,
+);

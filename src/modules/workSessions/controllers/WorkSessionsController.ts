@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { CreateWorkSessionsService } from '../services/CreateWorkSessionsService';
+import { DeleteWorkSessionsService } from '../services/DeleteworkSessionsService';
 import { ListWorkSessionsService } from '../services/ListWorkSessionsService';
 import { UpdateWorkSessionsService } from '../services/UpdateWorkSessionsService';
 
@@ -33,5 +34,16 @@ export class WorkSessionsController {
     });
 
     return response.json(workSessions);
+  }
+
+  public async delete(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const deleteWorkSession = new DeleteWorkSessionsService();
+
+    await deleteWorkSession.execute({ id });
+    return response
+      .status(200)
+      .json({ message: 'Successfully deleted work session 👍' });
   }
 }
