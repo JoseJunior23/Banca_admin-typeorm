@@ -18,3 +18,17 @@ workSessionsRouter.post(
   }),
   workSessionsController.create,
 );
+
+workSessionsRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      description: Joi.string().optional(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  workSessionsController.update,
+);

@@ -15,9 +15,7 @@ export class CreateWorkSessionsService {
   }: IWorkSessions): Promise<WorkSessions> {
     const workSessionsRepository = getCustomRepository(WorkSessionsRepository);
 
-    const workSessionsExists = await workSessionsRepository.findOne({
-      where: name,
-    });
+    const workSessionsExists = await workSessionsRepository.findByName(name);
     if (workSessionsExists) {
       throw new AppError('There is already a work session with this name !!!');
     }
