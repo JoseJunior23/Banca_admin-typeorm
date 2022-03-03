@@ -13,7 +13,7 @@ workSessionsRouter.post(
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
-      description: Joi.string().optional(),
+      description: Joi.string(),
     },
   }),
   workSessionsController.create,

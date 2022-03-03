@@ -48,7 +48,7 @@ export class CreateEmployees1646183534049 implements MigrationInterface {
     );
 
     await queryRunner.addColumn(
-      'work_sessions',
+      'employees',
       new TableColumn({
         name: 'work_session_id',
         type: 'uuid',
@@ -56,9 +56,9 @@ export class CreateEmployees1646183534049 implements MigrationInterface {
       }),
     );
     queryRunner.createForeignKey(
-      'work_session',
+      'employees',
       new TableForeignKey({
-        name: 'WorkSessionEmployee',
+        name: 'fk_work_sessions',
         columnNames: ['work_session_id'],
         referencedTableName: 'work_sessions',
         referencedColumnNames: ['id'],
@@ -68,7 +68,7 @@ export class CreateEmployees1646183534049 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('work_sessions', 'WorkSessionEmployee');
+    await queryRunner.dropForeignKey('employees', 'fk_work_sessions');
     await queryRunner.dropTable('employees');
   }
 }

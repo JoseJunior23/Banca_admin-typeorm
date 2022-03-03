@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -23,6 +24,7 @@ export class Employee {
   phone: string;
 
   @ManyToOne(() => WorkSessions, { eager: true })
+  @JoinColumn({ name: 'work_sessions_id' })
   work_session: WorkSessions;
 
   @CreateDateColumn()
