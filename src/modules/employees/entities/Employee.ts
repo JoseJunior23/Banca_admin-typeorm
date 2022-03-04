@@ -1,15 +1,15 @@
-import { Employee } from '@modules/employees/entities/Employee';
+import { WorkSessions } from '@modules/workSessions/entities/WorkSessions';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('work_sessions')
-export class WorkSessions {
+@Entity('employees')
+export class Employee {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -17,10 +17,13 @@ export class WorkSessions {
   name: string;
 
   @Column()
-  description: string;
+  nickname: string;
 
-  @OneToMany(() => Employee, () => WorkSessions)
-  employee: Employee[];
+  @Column()
+  phone: string;
+
+  @ManyToOne(() => WorkSessions, () => Employee, { eager: true })
+  session: WorkSessions;
 
   @CreateDateColumn()
   created_at: Date;
