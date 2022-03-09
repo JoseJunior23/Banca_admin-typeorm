@@ -1,4 +1,4 @@
-import { employeeRouter } from '@modules/employees/routes/employee.routes';
+import { employeeRouter } from '@modules/employees/router/employee.routes';
 import { passwordRouter } from '@modules/users/routes/password.routes';
 import { profileRouter } from '@modules/users/routes/profile.routes';
 import { sessionsRouter } from '@modules/users/routes/sessions.routes';

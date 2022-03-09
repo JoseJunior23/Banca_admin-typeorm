@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
-export class CreateRelationsEmployeesWorkSessions1646346607992 implements MigrationInterface {
+export class CreateAddWorsessionEmployee1646434774918 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
       'employees',
@@ -10,10 +10,11 @@ export class CreateRelationsEmployeesWorkSessions1646346607992 implements Migrat
         isNullable: true,
       }),
     );
+
     await queryRunner.createForeignKey(
       'employees',
       new TableForeignKey({
-        name: 'fk_employees_worksession',
+        name: 'fk_worksession_employees',
         columnNames: ['work_session_id'],
         referencedTableName: 'work_sessions',
         referencedColumnNames: ['id'],
@@ -23,7 +24,7 @@ export class CreateRelationsEmployeesWorkSessions1646346607992 implements Migrat
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('employees', 'fk_employees_worksession');
+    await queryRunner.dropForeignKey('employees', 'fk_worksession_employees');
     await queryRunner.dropColumn('employees', 'work_session_id');
   }
 }

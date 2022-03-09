@@ -19,7 +19,9 @@ export class WorkSessions {
   @Column()
   description: string;
 
-  @OneToMany(() => Employee, () => WorkSessions)
+  @OneToMany(() => Employee, employee => employee.session, {
+    cascade: true,
+  })
   employee: Employee[];
 
   @CreateDateColumn()

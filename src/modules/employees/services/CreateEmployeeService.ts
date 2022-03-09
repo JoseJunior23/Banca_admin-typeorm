@@ -11,22 +11,22 @@ interface IEmployee {
   session: string;
 }
 
-export class CreateEmployeeService {
+export default class createEmployeeService {
   public async execute({ name, nickname, phone, session }: IEmployee): Promise<Employee> {
     const employeeRepository = getCustomRepository(EmployeeRepository);
     const sessionRepository = getCustomRepository(WorkSessionsRepository);
 
-    const employeeExists = await employeeRepository.findByName(nickname);
-    if (employeeExists) {
-      throw new AppError('There is already any employee with this name !!!');
-    }
-
     const sessionExists = await sessionRepository.findById(session);
     if (!sessionExists) {
-      throw new AppError('Session not found !!!');
+      throw new AppError('Could not find any work session with the given id');
     }
 
-    const employee = employeeRepository.create({
+    const employeeExists = await employeeRepository.findByName(nickname);
+    if (employeeExists) {
+      throw new AppError('Nickname already used !!!');
+    }
+
+    const employee = await employeeRepository.createEmployee({
       name,
       nickname,
       phone,

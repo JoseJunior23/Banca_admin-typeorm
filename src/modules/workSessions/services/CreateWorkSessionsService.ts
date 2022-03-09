@@ -9,10 +9,7 @@ interface IWorkSessions {
 }
 
 export class CreateWorkSessionsService {
-  public async execute({
-    name,
-    description,
-  }: IWorkSessions): Promise<WorkSessions> {
+  public async execute({ name, description }: IWorkSessions): Promise<WorkSessions> {
     const workSessionsRepository = getCustomRepository(WorkSessionsRepository);
 
     const workSessionsExists = await workSessionsRepository.findByName(name);
