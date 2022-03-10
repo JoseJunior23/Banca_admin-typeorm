@@ -31,6 +31,21 @@ employeeRouter.get(
   employeeController.show,
 );
 
+employeeRouter.put(
+  '/:id',
+  celebrate({
+    [Segments.BODY]: {
+      name: Joi.string().required(),
+      nickname: Joi.string().required(),
+      phone: Joi.string().required(),
+    },
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  employeeController.update,
+);
+
 employeeRouter.delete(
   '/:id',
   celebrate({

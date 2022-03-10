@@ -3,6 +3,7 @@ import CreateEmployeeService from '../services/CreateEmployeeService';
 import { DeleteEmployeeService } from '../services/DeleteEmployeeService';
 import { ListEmployeeService } from '../services/ListEmployeeService';
 import { ShowEmployeeService } from '../services/ShowEmployeeService';
+import { UpdateEmployeeService } from '../services/UpdateEmployeeService';
 
 export class EmployeeController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -29,6 +30,20 @@ export class EmployeeController {
     const { id } = request.params;
     const showEmployee = new ShowEmployeeService();
     const employee = await showEmployee.execute({ id });
+    return response.json(employee);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+    const { name, nickname, phone } = request.body;
+
+    const updateEmployee = new UpdateEmployeeService();
+    const employee = await updateEmployee.execute({
+      id,
+      name,
+      nickname,
+      phone,
+    });
     return response.json(employee);
   }
 
