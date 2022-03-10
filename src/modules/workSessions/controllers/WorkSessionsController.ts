@@ -51,8 +51,6 @@ export class WorkSessionsController {
     const deleteWorkSession = new DeleteWorkSessionsService();
 
     await deleteWorkSession.execute({ id });
-    return response
-      .status(200)
-      .json({ message: 'Successfully deleted work session 👍' });
+    return response.status(200).json({ message: 'Successfully deleted work session 👍' });
   }
 }

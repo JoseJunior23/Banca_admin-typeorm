@@ -18,3 +18,25 @@ employeeRouter.post(
   }),
   employeeController.create,
 );
+
+employeeRouter.get('/', employeeController.index);
+
+employeeRouter.get(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  employeeController.show,
+);
+
+employeeRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  employeeController.delete,
+);

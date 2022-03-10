@@ -23,7 +23,7 @@ export class Employee {
   @Column()
   phone: string;
 
-  @ManyToOne(() => WorkSessions, session => session.employee)
+  @ManyToOne(() => WorkSessions, session => session.employee, { eager: true })
   @JoinColumn({ name: 'work_session_id' })
   session: WorkSessions;
 
