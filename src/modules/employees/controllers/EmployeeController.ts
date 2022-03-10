@@ -35,7 +35,7 @@ export class EmployeeController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, nickname, phone } = request.body;
+    const { name, nickname, phone, session } = request.body;
 
     const updateEmployee = new UpdateEmployeeService();
     const employee = await updateEmployee.execute({
@@ -43,6 +43,7 @@ export class EmployeeController {
       name,
       nickname,
       phone,
+      session,
     });
     return response.json(employee);
   }

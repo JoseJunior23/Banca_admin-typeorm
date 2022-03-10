@@ -38,6 +38,7 @@ employeeRouter.put(
       name: Joi.string().required(),
       nickname: Joi.string().required(),
       phone: Joi.string().required(),
+      session: Joi.string().uuid().required(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),

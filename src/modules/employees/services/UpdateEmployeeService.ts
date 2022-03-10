@@ -1,3 +1,4 @@
+import { WorkSessions } from '@modules/workSessions/entities/WorkSessions';
 import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { Employee } from '../entities/Employee';
@@ -8,9 +9,10 @@ interface IEmployee {
   name: string;
   nickname: string;
   phone: string;
+  session: WorkSessions;
 }
 export class UpdateEmployeeService {
-  public async execute({ id, name, nickname, phone }: IEmployee): Promise<Employee> {
+  public async execute({ id, name, nickname, phone, session }: IEmployee): Promise<Employee> {
     const employeeRepository = getCustomRepository(EmployeeRepository);
 
     const employee = await employeeRepository.findById(id);
@@ -21,6 +23,7 @@ export class UpdateEmployeeService {
     employee.name = name;
     employee.nickname = nickname;
     employee.phone = phone;
+    employee.session = session;
 
     await employeeRepository.save(employee);
     return employee;
