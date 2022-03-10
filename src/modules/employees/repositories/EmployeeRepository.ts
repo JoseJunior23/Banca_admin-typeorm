@@ -1,12 +1,15 @@
-import { WorkSessions } from '@modules/workSessions/entities/WorkSessions';
 import { EntityRepository, Repository } from 'typeorm';
 import { Employee } from '../entities/Employee';
 
+interface ISession {
+  name: string;
+  description: string;
+}
 interface IEmployee {
   name: string;
   nickname: string;
   phone: string;
-  session: WorkSessions;
+  session: ISession;
 }
 @EntityRepository(Employee)
 export class EmployeeRepository extends Repository<Employee> {
