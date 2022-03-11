@@ -11,4 +11,13 @@ export class TeamsRepository extends Repository<Teams> {
     });
     return team;
   }
+
+  public async findById(id: string) {
+    const team = this.findOne({
+      where: {
+        id,
+      },
+    });
+    return team;
+  }
 }
