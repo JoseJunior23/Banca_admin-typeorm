@@ -2,7 +2,7 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import { TeamController } from '../controllers/TeamsController';
 
-const teamsRouter = Router();
+export const teamsRouter = Router();
 const teamsController = new TeamController();
 
 teamsRouter.post(
@@ -19,7 +19,7 @@ teamsRouter.post(
 teamsRouter.get('/', teamsController.index);
 
 teamsRouter.put(
-  '/',
+  '/:id',
   celebrate({
     [Segments.BODY]: {
       name: Joi.string().required(),
@@ -31,7 +31,7 @@ teamsRouter.put(
   }),
 
   teamsRouter.delete(
-    '/',
+    '/:id',
     celebrate({
       [Segments.PARAMS]: {
         id: Joi.string().uuid().required(),
