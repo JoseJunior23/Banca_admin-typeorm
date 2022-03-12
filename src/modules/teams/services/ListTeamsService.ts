@@ -1,4 +1,3 @@
-import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { Teams } from '../entities/Teams';
 import { TeamsRepository } from '../repositories/TeamsRepository';
