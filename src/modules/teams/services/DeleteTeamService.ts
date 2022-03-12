@@ -16,6 +16,5 @@ export class DeleteTeamService {
     }
 
     await teamRepository.remove(team);
-    return team;
   }
 }
