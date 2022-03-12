@@ -13,13 +13,7 @@ interface IUser {
 }
 
 export class UpdateProfileService {
-  public async execute({
-    user_id,
-    name,
-    email,
-    password,
-    old_password,
-  }: IUser): Promise<User> {
+  public async execute({ user_id, name, email, password, old_password }: IUser): Promise<User> {
     const usersRepository = getCustomRepository(UsersRepository);
 
     const user = await usersRepository.findById(user_id);
