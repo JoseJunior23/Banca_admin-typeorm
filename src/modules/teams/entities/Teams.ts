@@ -20,7 +20,7 @@ export class Teams {
   @Column()
   description: string;
 
-  @ManyToMany(() => Employee)
+  @ManyToMany(() => Employee, employee => employee.team)
   @JoinTable({
     name: 'employee_teams',
     joinColumns: [{ name: 'team_id' }],

@@ -30,7 +30,7 @@ export class Employee {
   @JoinColumn({ name: 'work_session_id' })
   session: WorkSessions;
 
-  @ManyToMany(() => Teams)
+  @ManyToMany(() => Teams, team => team.employee)
   @JoinTable({
     name: 'employee_teams',
     joinColumns: [{ name: 'employee_id' }],
