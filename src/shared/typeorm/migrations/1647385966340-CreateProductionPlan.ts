@@ -30,6 +30,16 @@ export class CreateProductionPlan1647385966340 implements MigrationInterface {
             name: 'factory_plan',
             type: 'int',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp with time zone',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp with time zone',
+            default: 'now()',
+          },
         ],
       }),
     );
