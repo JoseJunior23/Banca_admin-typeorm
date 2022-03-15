@@ -34,7 +34,7 @@ export class CreateEmployeeTeams1647303210741 implements MigrationInterface {
         ],
         foreignKeys: [
           {
-            name: 'EmployeeTeam',
+            name: 'fk_employee_team',
             referencedTableName: 'employees',
             referencedColumnNames: ['id'],
             columnNames: ['employee_id'],
@@ -42,7 +42,7 @@ export class CreateEmployeeTeams1647303210741 implements MigrationInterface {
             onUpdate: 'CASCADE',
           },
           {
-            name: 'TeamEmployee',
+            name: 'fk_team_employee',
             referencedTableName: 'teams',
             referencedColumnNames: ['id'],
             columnNames: ['team_id'],

@@ -1,7 +1,10 @@
+import { Employee } from '@modules/employees/entities/Employee';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -16,6 +19,14 @@ export class Teams {
 
   @Column()
   description: string;
+
+  @ManyToMany(() => Employee)
+  @JoinTable({
+    name: 'employee_teams',
+    joinColumns: [{ name: 'team_id' }],
+    inverseJoinColumns: [{ name: 'employee_id' }],
+  })
+  employee: Employee[];
 
   @CreateDateColumn()
   created_at: Date;
