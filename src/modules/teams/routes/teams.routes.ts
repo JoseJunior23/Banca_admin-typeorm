@@ -22,20 +22,22 @@ teamsRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
-      name: Joi.string().required(),
+      name: Joi.string(),
       description: Joi.string(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
   }),
+  teamsController.update,
+);
 
-  teamsRouter.delete(
-    '/:id',
-    celebrate({
-      [Segments.PARAMS]: {
-        id: Joi.string().uuid().required(),
-      },
-    }),
-  ),
+teamsRouter.delete(
+  '/:id',
+  celebrate({
+    [Segments.PARAMS]: {
+      id: Joi.string().uuid().required(),
+    },
+  }),
+  teamsController.delete,
 );

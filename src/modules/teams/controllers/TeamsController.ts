@@ -17,7 +17,7 @@ export class TeamController {
 
   public async index(request: Request, response: Response): Promise<Response> {
     const listTeam = new ListTeamsService();
-    const team = listTeam.execute();
+    const team = await listTeam.execute();
     return response.json(team);
   }
 
@@ -25,7 +25,7 @@ export class TeamController {
     const { id } = request.params;
     const { name, description } = request.body;
     const updateTeam = new UpdateTeamService();
-    const team = updateTeam.execute({
+    const team = await updateTeam.execute({
       id,
       name,
       description,
@@ -36,7 +36,7 @@ export class TeamController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
     const deleteTeam = new DeleteTeamService();
-    const team = deleteTeam.execute({ id });
-    return response.json(team);
+    await deleteTeam.execute({ id });
+    return response.status(200).json({ message: 'Successfully deleted team 👍' });
   }
 }
