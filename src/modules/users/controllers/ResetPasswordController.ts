@@ -11,8 +11,6 @@ export class ResetPasswordController {
       token,
     });
 
-    return response
-      .status(200)
-      .json({ message: 'Password successfully recovered' });
+    return response.status(200).json({ message: 'Password successfully recovered' });
   }
 }
