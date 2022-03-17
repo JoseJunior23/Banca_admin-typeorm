@@ -1,4 +1,5 @@
 import { employeeRouter } from '@modules/employees/router/employee.routes';
+import { productionPlanRouter } from '@modules/productionPlan/routes/production.plan.routes';
 import { teamsRouter } from '@modules/teams/routes/teams.routes';
 import { passwordRouter } from '@modules/users/routes/password.routes';
 import { profileRouter } from '@modules/users/routes/profile.routes';
@@ -16,3 +17,4 @@ routes.use('/profile', profileRouter);
 routes.use('/work-sessions', workSessionsRouter);
 routes.use('/employee', employeeRouter);
 routes.use('/teams', teamsRouter);
+routes.use('/production-plan', productionPlanRouter);
