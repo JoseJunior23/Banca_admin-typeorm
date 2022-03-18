@@ -24,7 +24,7 @@ productionPlanRouter.get(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      id: Joi.string().uuid().required(),
     },
   }),
   productionPlanController.show,
@@ -40,7 +40,7 @@ productionPlanRouter.put(
       factory_plan: Joi.number().required(),
     },
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      id: Joi.string().uuid().required(),
     },
   }),
   productionPlanController.update,
@@ -50,7 +50,7 @@ productionPlanRouter.delete(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
-      id: Joi.string().required(),
+      id: Joi.string().uuid().required(),
     },
   }),
   productionPlanController.delete,
