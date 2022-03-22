@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { Factory } from '../entities/Factory';
 import { FactoryRepository } from '../repositories/FactoryRepository';
@@ -7,9 +8,14 @@ interface Ifactory {
   fantasy_name: string;
 }
 
-export class CreateProductionPlanService {
+export class CreateFactoryService {
   public async execute({ corporate_name, fantasy_name }: Ifactory): Promise<Factory> {
     const factoryRepository = getCustomRepository(FactoryRepository);
+
+    const factoryExists = await factoryRepository.findByName(corporate_name);
+    if (factoryExists) {
+      throw new AppError('There is a factory with this name !!!');
+    }
 
     const factory = factoryRepository.create({
       corporate_name,
