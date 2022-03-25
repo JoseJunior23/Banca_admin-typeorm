@@ -1,8 +1,8 @@
 import { EntityRepository, Repository } from 'typeorm';
-import ShoesModel from '../entities/ShoesModel';
+import { ShoesModel } from '../entities/ShoesModel';
 
 @EntityRepository(ShoesModel)
-export class shoesModelRepository extends Repository<ShoesModel> {
+export class ShoesModelRepository extends Repository<ShoesModel> {
   public async findByRef(reference: string) {
     const shoesModel = await this.findOne({
       where: {
