@@ -23,7 +23,7 @@ export class CreateShoesModel1648166135123 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'price_pair_shoes',
+            name: 'price_pairs_shoes',
             type: 'float',
           },
           {
