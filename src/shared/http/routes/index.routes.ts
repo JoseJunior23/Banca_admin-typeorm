@@ -1,6 +1,7 @@
 import { employeeRouter } from '@modules/employees/router/employee.routes';
 import { factoryRouter } from '@modules/factory/routes/factory.routes';
-import { productionPlanRouter } from '@modules/productionPlan/routes/production.plan.routes';
+import { productionDetailRouter } from '@modules/production/productionDetail/routes/production_detail.routes';
+import { productionPlanRouter } from '@modules/production/productionPlan/routes/production_plan.routes';
 import { shoesModelRouter } from '@modules/shoesModel/routes/shoes_model.routes';
 import { teamsRouter } from '@modules/teams/routes/teams.routes';
 import { passwordRouter } from '@modules/users/routes/password.routes';
@@ -22,3 +23,4 @@ routes.use('/teams', teamsRouter);
 routes.use('/production-plan', productionPlanRouter);
 routes.use('/factory', factoryRouter);
 routes.use('/shoes-model', shoesModelRouter);
+routes.use('/production-detail', productionDetailRouter);
