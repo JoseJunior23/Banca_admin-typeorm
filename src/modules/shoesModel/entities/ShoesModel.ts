@@ -18,7 +18,7 @@ export class ShoesModel {
   description: string;
 
   @Column('float')
-  price_pair_shoes: number;
+  price_pairs_shoes: number;
 
   @Column('float')
   price_pespontador: number;
