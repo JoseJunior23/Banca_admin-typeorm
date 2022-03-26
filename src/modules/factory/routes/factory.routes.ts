@@ -11,6 +11,7 @@ factoryRouter.post(
     [Segments.BODY]: {
       corporate_name: Joi.string().required(),
       fantasy_name: Joi.string().required(),
+      phone: Joi.string().required(),
     },
   }),
   factoryController.create,

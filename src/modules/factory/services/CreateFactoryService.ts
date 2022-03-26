@@ -6,10 +6,11 @@ import { FactoryRepository } from '../repositories/FactoryRepository';
 interface Ifactory {
   corporate_name: string;
   fantasy_name: string;
+  phone: string;
 }
 
 export class CreateFactoryService {
-  public async execute({ corporate_name, fantasy_name }: Ifactory): Promise<Factory> {
+  public async execute({ corporate_name, fantasy_name, phone }: Ifactory): Promise<Factory> {
     const factoryRepository = getCustomRepository(FactoryRepository);
 
     const factoryExists = await factoryRepository.findByName(corporate_name);
@@ -20,6 +21,7 @@ export class CreateFactoryService {
     const factory = factoryRepository.create({
       corporate_name,
       fantasy_name,
+      phone,
     });
 
     await factoryRepository.save(factory);

@@ -23,6 +23,10 @@ export class CreateFactory1647562966675 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'phone',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp with time zone',
             default: 'now()',

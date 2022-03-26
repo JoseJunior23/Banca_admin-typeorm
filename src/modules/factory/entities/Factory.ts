@@ -17,6 +17,9 @@ export class Factory {
   @Column()
   fantasy_name: string;
 
+  @Column()
+  phone: string;
+
   @CreateDateColumn()
   created_at: string;
 

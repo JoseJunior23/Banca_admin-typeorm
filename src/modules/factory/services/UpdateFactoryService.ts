@@ -5,11 +5,12 @@ import { FactoryRepository } from '../repositories/FactoryRepository';
 
 interface IFactory {
   id: string;
-  corporate_name?: string;
-  fantasy_name?: string;
+  corporate_name: string;
+  fantasy_name: string;
+  phone: string;
 }
 export class UpdateFactoryService {
-  public async execute({ id, corporate_name, fantasy_name }: IFactory): Promise<Factory> {
+  public async execute({ id, corporate_name, fantasy_name, phone }: IFactory): Promise<Factory> {
     const factoryRepository = getCustomRepository(FactoryRepository);
 
     const factory = await factoryRepository.findById(id);
@@ -18,7 +19,8 @@ export class UpdateFactoryService {
     }
 
     factory.corporate_name = corporate_name;
-    factory.factoryRepository = fantasy_name;
+    factory.fantasy_name = fantasy_name;
+    factory.phone = phone;
 
     await factoryRepository.save(factory);
     return factory;

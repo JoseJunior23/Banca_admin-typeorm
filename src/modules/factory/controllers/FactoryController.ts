@@ -7,12 +7,13 @@ import { UpdateFactoryService } from '../services/UpdateFactoryService';
 
 export class FactoryController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { corporate_name, fantasy_name } = request.body;
+    const { corporate_name, fantasy_name, phone } = request.body;
 
     const createFactory = new CreateFactoryService();
     const factory = await createFactory.execute({
       corporate_name,
       fantasy_name,
+      phone,
     });
     return response.json(factory);
   }
@@ -34,13 +35,14 @@ export class FactoryController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { corporate_name, fantasy_name } = request.body;
+    const { corporate_name, fantasy_name, phone } = request.body;
 
     const updateFactory = new UpdateFactoryService();
     const factory = await updateFactory.execute({
       id,
       corporate_name,
       fantasy_name,
+      phone,
     });
     return response.json(factory);
   }
