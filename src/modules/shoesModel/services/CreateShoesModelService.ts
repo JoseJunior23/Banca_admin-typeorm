@@ -6,7 +6,7 @@ import { ShoesModelRepository } from '../repositories/ShoesModelRepostories';
 interface IShoesModel {
   reference: string;
   description: string;
-  price_pair_shoes: number;
+  price_pairs_shoes: number;
   price_pespontador: number;
   price_coladeira: number;
 }
@@ -14,7 +14,7 @@ export class CreateShoesModelService {
   public async execute({
     reference,
     description,
-    price_pair_shoes,
+    price_pairs_shoes,
     price_pespontador,
     price_coladeira,
   }: IShoesModel): Promise<ShoesModel> {
@@ -28,7 +28,7 @@ export class CreateShoesModelService {
     const shoesModel = shoesModelRepository.create({
       reference,
       description,
-      price_pair_shoes,
+      price_pairs_shoes,
       price_pespontador,
       price_coladeira,
     });
