@@ -1,7 +1,11 @@
+import { Factory } from '@modules/factory/entities/Factory';
+import { ProductionDetail } from '@modules/production/productionDetail/entities/ProductionDetail';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -22,6 +26,12 @@ export class ProductionPlan {
 
   @Column('int')
   factory_plan: number;
+
+  @OneToMany(() => ProductionDetail, prod_detail => prod_detail.prod_plan)
+  prod_detail: ProductionDetail[];
+
+  @ManyToOne(() => Factory, factory => factory.prod_plan, { eager: true })
+  factory: Factory;
 
   @CreateDateColumn()
   created_at: Date;

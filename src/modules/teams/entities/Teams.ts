@@ -1,10 +1,12 @@
 import { Employee } from '@modules/employees/entities/Employee';
+import { ProductionDetail } from '@modules/production/productionDetail/entities/ProductionDetail';
 import {
   Column,
   CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,6 +21,9 @@ export class Teams {
 
   @Column()
   description: string;
+
+  @OneToMany(() => ProductionDetail, prod_detail => prod_detail.team)
+  prod_detail: ProductionDetail[];
 
   @ManyToMany(() => Employee, employee => employee.team)
   @JoinTable({
