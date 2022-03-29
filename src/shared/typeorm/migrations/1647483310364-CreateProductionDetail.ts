@@ -31,15 +31,15 @@ export class CreateProductionDetail1647483310364 implements MigrationInterface {
             type: 'int',
           },
           {
-            name: 'billing',
+            name: 'billed',
             type: 'varchar',
           },
           {
-            name: 'billing_date',
+            name: 'billed_date',
             type: 'Date',
           },
           {
-            name: 'payday',
+            name: 'payment_date',
             type: 'Date',
           },
           {

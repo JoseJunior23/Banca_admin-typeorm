@@ -28,10 +28,10 @@ export class ProductionDetail {
   number_pairs: number;
 
   @Column('float')
-  billing: number;
+  billed: number;
 
   @Column()
-  billing_date: Date;
+  billed_date: Date;
 
   @Column()
   payday: Date;

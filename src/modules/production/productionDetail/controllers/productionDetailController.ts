@@ -12,9 +12,9 @@ export class ProductionDetailController {
       departure_date,
       production_sheet,
       number_pairs,
-      billing,
-      billing_date,
-      payday,
+      billed,
+      billed_date,
+      payment_date,
     } = request.body;
 
     const createProductionDetail = new CreateProductionDetailService();
@@ -23,9 +23,9 @@ export class ProductionDetailController {
       departure_date,
       production_sheet,
       number_pairs,
-      billing,
-      billing_date,
-      payday,
+      billed,
+      billed_date,
+      payment_date,
     });
     return response.json(productionDetail);
   }
@@ -50,9 +50,9 @@ export class ProductionDetailController {
       departure_date,
       production_sheet,
       number_pairs,
-      billing,
-      billing_date,
-      payday,
+      billed,
+      billed_date,
+      payment_date,
     } = request.body;
 
     const updateProductionDetail = new UpdateProductionDetailService();
@@ -63,9 +63,9 @@ export class ProductionDetailController {
       departure_date,
       production_sheet,
       number_pairs,
-      billing,
-      billing_date,
-      payday,
+      billed,
+      billed_date,
+      payment_date,
     });
     return response.json(productionDetail);
   }

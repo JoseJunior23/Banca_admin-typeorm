@@ -9,9 +9,9 @@ interface IProductionDetail {
   departure_date: Date;
   production_sheet: number;
   number_pairs: number;
-  billing: number;
-  billing_date: Date;
-  payday: Date;
+  billed: number;
+  billed_date: Date;
+  payment_date: Date;
 }
 
 export class UpdateProductionDetailService {
@@ -21,9 +21,9 @@ export class UpdateProductionDetailService {
     departure_date,
     production_sheet,
     number_pairs,
-    billing,
-    billing_date,
-    payday,
+    billed,
+    billed_date,
+    payment_date,
   }: IProductionDetail): Promise<ProductionDetail> {
     const productionDetailRepository = getCustomRepository(ProductionDetailRepository);
 
@@ -36,9 +36,9 @@ export class UpdateProductionDetailService {
     productionDetail.departure_date = departure_date;
     productionDetail.production_sheet = production_sheet;
     productionDetail.number_pairs = number_pairs;
-    productionDetail.billing = billing;
-    productionDetail.billing_date = billing_date;
-    productionDetail.payday = payday;
+    productionDetail.billed = billed;
+    productionDetail.billed_date = billed_date;
+    productionDetail.payment_date = payment_date;
 
     await productionDetailRepository.save(productionDetail);
     return productionDetail;
