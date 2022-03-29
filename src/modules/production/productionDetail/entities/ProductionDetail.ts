@@ -34,7 +34,7 @@ export class ProductionDetail {
   billed_date: Date;
 
   @Column()
-  payday: Date;
+  payment_date: Date;
 
   @ManyToOne(() => Teams, team => team.prod_detail, { eager: true })
   team: Teams;
