@@ -22,7 +22,9 @@ export class Teams {
   @Column()
   description: string;
 
-  @OneToMany(() => ProductionDetail, prod_detail => prod_detail.team)
+  @OneToMany(() => ProductionDetail, prod_detail => prod_detail.team, {
+    cascade: true,
+  })
   prod_detail: ProductionDetail[];
 
   @ManyToMany(() => Employee, employee => employee.team)

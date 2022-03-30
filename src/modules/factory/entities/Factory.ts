@@ -23,10 +23,14 @@ export class Factory {
   @Column()
   phone: string;
 
-  @OneToMany(() => ProductionPlan, prod_plan => prod_plan.factory)
+  @OneToMany(() => ProductionPlan, prod_plan => prod_plan.factory, {
+    cascade: true,
+  })
   prod_plan: ProductionPlan[];
 
-  @OneToMany(() => ShoesModel, model => model.factory)
+  @OneToMany(() => ShoesModel, model => model.factory, {
+    cascade: true,
+  })
   model: ShoesModel[];
 
   @CreateDateColumn()

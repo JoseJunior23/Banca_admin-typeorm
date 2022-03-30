@@ -4,6 +4,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -27,10 +28,13 @@ export class ProductionPlan {
   @Column('int')
   factory_plan: number;
 
-  @OneToMany(() => ProductionDetail, prod_detail => prod_detail.prod_plan)
+  @OneToMany(() => ProductionDetail, prod_detail => prod_detail.prod_plan, {
+    cascade: true,
+  })
   prod_detail: ProductionDetail[];
 
   @ManyToOne(() => Factory, factory => factory.prod_plan, { eager: true })
+  @JoinColumn({ name: 'factory_id' })
   factory: Factory;
 
   @CreateDateColumn()

@@ -5,6 +5,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -37,12 +38,15 @@ export class ProductionDetail {
   payment_date: Date;
 
   @ManyToOne(() => Teams, team => team.prod_detail, { eager: true })
+  @JoinColumn({ name: 'teams_id' })
   team: Teams;
 
   @ManyToOne(() => ProductionPlan, plan => plan.prod_detail, { eager: true })
+  @JoinColumn({ name: 'production_plan_id' })
   prod_plan: ProductionPlan;
 
   @ManyToOne(() => ShoesModel, model => model.prod_detail)
+  @JoinColumn({ name: 'shoes_model_id' })
   model: ShoesModel;
 
   @CreateDateColumn()
