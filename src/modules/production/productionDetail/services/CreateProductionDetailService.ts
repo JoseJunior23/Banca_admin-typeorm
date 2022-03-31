@@ -5,6 +5,7 @@ import { ProductionDetail } from '../entities/ProductionDetail';
 import { ProductionDetailRepository } from '../repositories/ProductionDetailRepository';
 
 interface ITeams {
+  id: string;
   name: string;
   description: string;
 }
@@ -39,8 +40,8 @@ export class CreateProductionDetailService {
       throw new AppError('There is a production sheet with this number !!!');
     }
 
-    const teamExists = await teamRepository.findByIds(team);
-    if (!teamExists) {
+    const teamExists = await teamRepository.findAllByIds(team);
+    if (!teamExists.length) {
       throw new AppError('Could not find any team with the given id');
     }
 
@@ -52,6 +53,7 @@ export class CreateProductionDetailService {
       billed,
       billed_date,
       payment_date,
+      team,
     });
 
     await productionDetailRepository.save(productionDetail);
