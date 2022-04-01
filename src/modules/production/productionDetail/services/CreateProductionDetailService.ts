@@ -51,17 +51,17 @@ export class CreateProductionDetailService {
     }
 
     const existsTeams = await teamsRepository.findById(team.id);
-    if (existsTeams) {
+    if (!existsTeams) {
       throw new AppError('Could not find any team with the given id !!!');
     }
 
     const prodPlanExists = await productionPlanRepository.findById(prod_plan.id);
-    if (prodPlanExists) {
+    if (!prodPlanExists) {
       throw new AppError('Could not find any production Plan with the given id !!!');
     }
 
     const modelExists = await modelRepository.findById(model.id);
-    if (modelExists) {
+    if (!modelExists) {
       throw new AppError('Could not find any production Plan with the given id !!!');
     }
 
@@ -73,9 +73,9 @@ export class CreateProductionDetailService {
       billed,
       billed_date,
       payment_date,
-      team,
-      prod_plan,
-      model,
+      team: existsTeams,
+      prod_plan: prodPlanExists,
+      model: modelExists,
     });
 
     await productionDetailRepository.save(productionDetail);

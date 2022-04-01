@@ -24,7 +24,7 @@ export class CreateProductionPlanService {
     const factoryRepository = getCustomRepository(FactoryRepository);
 
     const factoryExists = await factoryRepository.findById(factory.id);
-    if (factoryExists) {
+    if (!factoryExists) {
       throw new AppError('Could not find any factory with the given id !!!');
     }
 
@@ -33,7 +33,7 @@ export class CreateProductionPlanService {
       description,
       entry_date,
       factory_plan,
-      factory,
+      factory: factoryExists,
     });
 
     await productionPlanRepository.save(productionPlan);
