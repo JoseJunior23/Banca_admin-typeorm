@@ -1,4 +1,3 @@
-import { Factory } from '@modules/factory/entities/Factory';
 import { FactoryRepository } from '@modules/factory/repositories/FactoryRepository';
 import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
@@ -11,7 +10,7 @@ interface IShoesModel {
   price_pairs_shoes: number;
   price_pespontador: number;
   price_coladeira: number;
-  factory: Factory;
+  factory: string;
 }
 export class CreateShoesModelService {
   public async execute({
@@ -30,8 +29,8 @@ export class CreateShoesModelService {
       throw new AppError('There is a shoes model registered with this name !!!');
     }
 
-    const factoryExists = await factoryRepository.findById(factory.id);
-    if (factoryExists) {
+    const factoryExists = await factoryRepository.findById(factory);
+    if (!factoryExists) {
       throw new AppError('Could not find any factory with the given id !!!');
     }
 
@@ -41,7 +40,7 @@ export class CreateShoesModelService {
       price_pairs_shoes,
       price_pespontador,
       price_coladeira,
-      factory,
+      factory: factoryExists,
     });
 
     await shoesModelRepository.save(shoesModel);

@@ -1,4 +1,3 @@
-import { Factory } from '@modules/factory/entities/Factory';
 import { FactoryRepository } from '@modules/factory/repositories/FactoryRepository';
 import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
@@ -10,7 +9,7 @@ interface IProductionPlan {
   description: string;
   entry_date: Date;
   factory_plan: number;
-  factory: Factory;
+  factory: string;
 }
 export class CreateProductionPlanService {
   public async execute({
@@ -23,7 +22,7 @@ export class CreateProductionPlanService {
     const productionPlanRepository = getCustomRepository(ProductionPlanRepository);
     const factoryRepository = getCustomRepository(FactoryRepository);
 
-    const factoryExists = await factoryRepository.findById(factory.id);
+    const factoryExists = await factoryRepository.findById(factory);
     if (!factoryExists) {
       throw new AppError('Could not find any factory with the given id !!!');
     }

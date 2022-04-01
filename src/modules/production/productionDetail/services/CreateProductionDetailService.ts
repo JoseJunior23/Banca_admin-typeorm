@@ -1,18 +1,10 @@
-import { ProductionPlan } from '@modules/production/productionPlan/entities/productionPlan';
 import { ProductionPlanRepository } from '@modules/production/productionPlan/repositories/ProductionPlanRepository';
-import { ShoesModel } from '@modules/shoesModel/entities/ShoesModel';
 import { ShoesModelRepository } from '@modules/shoesModel/repositories/ShoesModelRepostories';
 import { TeamsRepository } from '@modules/teams/repositories/TeamsRepository';
 import { AppError } from '@shared/errors/AppError';
 import { getCustomRepository } from 'typeorm';
 import { ProductionDetail } from '../entities/ProductionDetail';
 import { ProductionDetailRepository } from '../repositories/ProductionDetailRepository';
-
-interface ITeams {
-  id: string;
-  name: string;
-  description: string;
-}
 
 interface IProductionDetail {
   entry_date: Date;
@@ -22,9 +14,9 @@ interface IProductionDetail {
   billed: number;
   billed_date: number;
   payment_date: Date;
-  team: ITeams;
-  prod_plan: ProductionPlan;
-  model: ShoesModel;
+  team: string;
+  prod_plan: string;
+  model: string;
 }
 
 export class CreateProductionDetailService {
@@ -50,17 +42,17 @@ export class CreateProductionDetailService {
       throw new AppError('There is a production sheet with this number !!!');
     }
 
-    const existsTeams = await teamsRepository.findById(team.id);
+    const existsTeams = await teamsRepository.findById(team);
     if (!existsTeams) {
       throw new AppError('Could not find any team with the given id !!!');
     }
 
-    const prodPlanExists = await productionPlanRepository.findById(prod_plan.id);
+    const prodPlanExists = await productionPlanRepository.findById(prod_plan);
     if (!prodPlanExists) {
       throw new AppError('Could not find any production Plan with the given id !!!');
     }
 
-    const modelExists = await modelRepository.findById(model.id);
+    const modelExists = await modelRepository.findById(model);
     if (!modelExists) {
       throw new AppError('Could not find any production Plan with the given id !!!');
     }
