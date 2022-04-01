@@ -7,8 +7,14 @@ import { UpdateShoesModelService } from '../services/UpdateShoesModelService';
 
 export class ShoesModelController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { reference, description, price_pairs_shoes, price_pespontador, price_coladeira } =
-      request.body;
+    const {
+      reference,
+      description,
+      price_pairs_shoes,
+      price_pespontador,
+      price_coladeira,
+      factory,
+    } = request.body;
 
     const createShoesModel = new CreateShoesModelService();
     const shoesModel = await createShoesModel.execute({
@@ -17,6 +23,7 @@ export class ShoesModelController {
       price_pairs_shoes,
       price_pespontador,
       price_coladeira,
+      factory,
     });
 
     return response.json(shoesModel);

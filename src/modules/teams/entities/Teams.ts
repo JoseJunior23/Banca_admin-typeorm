@@ -27,7 +27,7 @@ export class Teams {
   })
   prod_detail: ProductionDetail[];
 
-  @ManyToMany(() => Employee, employee => employee.team)
+  @ManyToMany(() => Employee, employee => employee.team, { eager: true })
   @JoinTable({
     name: 'employee_teams',
     joinColumns: [{ name: 'team_id' }],

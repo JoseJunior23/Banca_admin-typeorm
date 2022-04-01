@@ -7,7 +7,7 @@ import { UpdateProductionPlanService } from '../services/UpdateProductionPlanSer
 
 export class ProductionPlanController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { variation, description, entry_date, factory_plan } = request.body;
+    const { variation, description, entry_date, factory_plan, factory } = request.body;
 
     const createProductionPlan = new CreateProductionPlanService();
     const productionPlan = await createProductionPlan.execute({
@@ -15,6 +15,7 @@ export class ProductionPlanController {
       description,
       entry_date,
       factory_plan,
+      factory,
     });
     return response.json(productionPlan);
   }

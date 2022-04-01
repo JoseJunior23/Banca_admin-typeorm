@@ -45,7 +45,7 @@ export class ProductionDetail {
   @JoinColumn({ name: 'production_plan_id' })
   prod_plan: ProductionPlan;
 
-  @ManyToOne(() => ShoesModel, model => model.prod_detail)
+  @ManyToOne(() => ShoesModel, model => model.prod_detail, { eager: true })
   @JoinColumn({ name: 'shoes_model_id' })
   model: ShoesModel;
 

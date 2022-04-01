@@ -15,6 +15,9 @@ export class ProductionDetailController {
       billed,
       billed_date,
       payment_date,
+      team,
+      prod_plan,
+      model,
     } = request.body;
 
     const createProductionDetail = new CreateProductionDetailService();
@@ -26,6 +29,9 @@ export class ProductionDetailController {
       billed,
       billed_date,
       payment_date,
+      team,
+      prod_plan,
+      model,
     });
     return response.json(productionDetail);
   }

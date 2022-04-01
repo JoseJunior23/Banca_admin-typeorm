@@ -13,6 +13,7 @@ productionPlanRouter.post(
       description: Joi.string().required(),
       entry_date: Joi.date().required(),
       factory_plan: Joi.number().required(),
+      factory: Joi.string().uuid().required(),
     },
   }),
   productionPlanController.create,

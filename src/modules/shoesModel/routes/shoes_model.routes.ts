@@ -15,6 +15,7 @@ shoesModelRouter.post(
       price_pairs_shoes: Joi.number().required(),
       price_pespontador: Joi.number().required(),
       price_coladeira: Joi.number().required(),
+      factory: Joi.string().uuid().required(),
     },
   }),
   shoesModelController.create,
