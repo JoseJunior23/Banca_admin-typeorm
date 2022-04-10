@@ -15,20 +15,20 @@
 ---
 
 ### Executando a api
-#####- Passo-1 : Fazendo o clone:
+<h5>Passo-1 : Fazendo o clone:</h5>
 - git clone https://github.com/JoseJunior23/Banca_admin.git
 
-#####- Passo-2: Entrar na pasta dos arquivos clonados
+<h5> Passo-2: Entrar na pasta dos arquivos clonados </h5>
  - "Banca_admin"
-#####- Passo-3  Instalando as dependecias
+- Passo-3  Instalando as dependecias
  - yarn install
 ou
  - npm install
-#####- Configurando Docker
+<h5>- Configurando Docker </h5>
  - Este projeto esta rodando em containers docker para isso sera necessario ter o docker configurado na maquina, segue o link da documentação para instalação e configuração do docker.
   - [Docker](https://docs.docker.com/get-docker/)
 
-#####- Configuração do arquivos que estão no gitignore
+<h5>- Configuração do arquivos que estão no gitignore </h5>
 Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("ormconfig.example.json",</b> para <b>"ormconfig.json") </b>e inserir as configurações baseadas em seu ambiente, como exemplo temos o arquivo ormconfig, onde deverá ser colocado,o nome do banco de dados e a senha do mesmo
 {
   "type": "postgres",
@@ -44,7 +44,7 @@ Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("or
   }
 }
 
-#####-Subindo os containers Docker
+<h5>-Subindo os containers Docker</h5>
 Utiliza-se o comando <font color = blue>docker-compose up </font>
 
 
