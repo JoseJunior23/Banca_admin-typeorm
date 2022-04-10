@@ -33,17 +33,11 @@ ou
 Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("ormconfig.example.json",</b> para <b>"ormconfig.json") </b>e inserir as configurações baseadas em seu ambiente, como exemplo temos o arquivo ormconfig, onde deverá ser colocado,o nome do banco de dados e a senha do mesmo:
 
 {
-  "type": "postgres",
-  "host": "db",
-  "port": 5432,
+
   "username": "postgres",<b><font color= red>
   "password": "",
   "database": "",  </b></font>
-  "entities": ["./src/modules/**/typeorm/entities/*.ts"],
-  "migrations": ["./src/shared/typeorm/migrations/*.ts"],
-  "cli": {
-    "migrationsDir": "./src/shared/typeorm/migrations"
-  }
+
 }
 
 <h5> -Subindo os containers Docker</h5>
