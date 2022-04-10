@@ -30,7 +30,8 @@ ou
   - [Docker](https://docs.docker.com/get-docker/)
 
 <h5>- Configuração do arquivos que estão no gitignore </h5>
-Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("ormconfig.example.json",</b> para <b>"ormconfig.json") </b>e inserir as configurações baseadas em seu ambiente, como exemplo temos o arquivo ormconfig, onde deverá ser colocado,o nome do banco de dados e a senha do mesmo
+Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("ormconfig.example.json",</b> para <b>"ormconfig.json") </b>e inserir as configurações baseadas em seu ambiente, como exemplo temos o arquivo ormconfig, onde deverá ser colocado,o nome do banco de dados e a senha do mesmo:
+
 {
   "type": "postgres",
   "host": "db",
