@@ -34,9 +34,12 @@ Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("or
 
 {
 
-  "username": "postgres",<b><font color= red>
+  ,<b><font color= red>
+  <br>
   "password": "",
-  "database": "",  </b></font>
+  <br>
+  "database": "",
+  </b></font>
 
 }
 
