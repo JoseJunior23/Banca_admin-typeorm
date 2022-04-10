@@ -26,6 +26,7 @@ ou
  - npm install
 <h5>- Configurando Docker </h5>
  - Este projeto esta rodando em containers docker para isso sera necessario ter o docker configurado na maquina, segue o link da documentação para instalação e configuração do docker.
+
   - [Docker](https://docs.docker.com/get-docker/)
 
 <h5>- Configuração do arquivos que estão no gitignore </h5>
@@ -44,7 +45,7 @@ Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("or
   }
 }
 
-<h5>-Subindo os containers Docker</h5>
+<h5> -Subindo os containers Docker</h5>
 Utiliza-se o comando <font color = blue>docker-compose up </font>
 
 
