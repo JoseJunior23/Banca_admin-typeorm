@@ -1,23 +1,31 @@
-> status: 🚧 Em desenvolvimento ⚠️
 
- #### App desenvolvido como tese de graduação do curso de analise e desenvolvimento de sistemas da FATEC Franca
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
+> :construction: Projeto em construção :construction:
+
+
+<h1 align="center"> Banca admin </h1>
+
 ---
-### Descrição
-  Projeto Banca_admin, backend desenvolvido em NodeJs/Typescript e o frontend deverá ser desenvolvido em ReactJs, O intuito deste projeto é desenvolver um software que possa ajudar micro/pequenas empresas ligadas ao setor calçadista a gerirem melhor  seus processos administrativo.
+### Descrição do projeto
+  Projeto em desenvolvimento para a disciplina trabalho de graduação, do curso de Analise e desenvolvimento de sistemas. O Banca admin é um sistema de gerenciamento empresarial voltado para micro/pequenas empresas do setor calçadista, mais especificamente o setor de pesponto de calçados.
+   O sistema permitirá o controle da empresa com quadro de funcionarios, quantidade produzida, qual grupo de funcionario produziu, quanto de renda gerou ou não, possibilitando aos micro e pequenos empreendedores uma maior facilidade em lidar com a area burocratica da empresa.
 
-
-### 💻 Tecnologias utilizadas:
+### 💻 Tecnologias e ferramentas utilizadas:
  - [Node](https://nodejs.org/en/docs/)
  - [Typescript](https://www.typescriptlang.org/)
  - [Typeorm](https://typeorm.io/#/)
  - [Postgresql](https://www.postgresql.org/)
  - [Postman](https://www.postman.com/)
 ---
+## 📁 Acesso ao projeto
+<h5>Passo-1 : Fazendo o clone:</h5>
+https://github.com/JoseJunior23/Banca_admin.git
 
-### Executando a api
+## 🛠️ Abrir e rodar o projeto
+
 <h5>Passo-1 : Fazendo o clone:</h5>
 - git clone https://github.com/JoseJunior23/Banca_admin.git
-
 <h5> Passo-2: Entrar na pasta dos arquivos clonados </h5>
  - "Banca_admin"
 - Passo-3  Instalando as dependecias
@@ -30,18 +38,7 @@ ou
   - [Docker](https://docs.docker.com/get-docker/)
 
 <h5>- Configuração do arquivos que estão no gitignore </h5>
-Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("ormconfig.example.json",</b> para <b>"ormconfig.json") </b>e inserir as configurações baseadas em seu ambiente, como exemplo temos o arquivo ormconfig, onde deverá ser colocado,o nome do banco de dados e a senha do mesmo:
-
-{
-
-  ,<b><font color= red>
-  <br>
-  "password": "",
-  <br>
-  "database": "",
-  </b></font>
-
-}
+Cada um deste arquivos conta com arquivos de exemplos, basta renomea-los <b>("ormconfig.example.json",</b> para <b>"ormconfig.json") </b>e inserir as configurações baseadas em seu ambiente.
 
 <h5> -Subindo os containers Docker</h5>
 Utiliza-se o comando <font color = blue>docker-compose up </font>
