@@ -1,6 +1,7 @@
 import { WorkSessionsRepository } from '@modules/workSessions/repositories/WorkSessionsRepository';
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
+import { dataSource } from '@shared/typeorm/connection';
+
 import { Employee } from '../entities/Employee';
 import { EmployeeRepository } from '../repositories/EmployeeRepository';
 
@@ -13,8 +14,8 @@ interface IEmployee {
 
 export default class createEmployeeService {
   public async execute({ name, nickname, phone, session }: IEmployee): Promise<Employee> {
-    const employeeRepository = getCustomRepository(EmployeeRepository);
-    const sessionRepository = getCustomRepository(WorkSessionsRepository);
+    const employeeRepository = dataSource.getRepository(EmployeeRepository);
+    const sessionRepository = dataSource.getRepository(WorkSessionsRepository);
 
     const sessionExists = await sessionRepository.findById(session);
     if (!sessionExists) {

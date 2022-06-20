@@ -1,28 +1,26 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { WorkSessions } from '../entities/WorkSessions';
-import { WorkSessionsRepository } from '../repositories/WorkSessionsRepository';
+import { inject, injectable } from 'tsyringe';
+import { ICreateWorkSession } from '../domain/models/ICreateWorkSession';
+import { IWorkSession } from '../domain/models/IworkSessions';
+import { IWorkSessionsRepository } from '../domain/repositories/IWorkSessionsRepository';
 
-interface IWorkSessions {
-  name: string;
-  description?: string;
-}
-
+@injectable()
 export class CreateWorkSessionsService {
-  public async execute({ name, description }: IWorkSessions): Promise<WorkSessions> {
-    const workSessionsRepository = getCustomRepository(WorkSessionsRepository);
+  constructor(
+    @inject('WorkSessionsRepository')
+    private workSessionsRepository: IWorkSessionsRepository,
+  ) {}
 
-    const workSessionsExists = await workSessionsRepository.findByName(name);
+  public async execute({ name, description }: ICreateWorkSession): Promise<IWorkSession> {
+    const workSessionsExists = await this.workSessionsRepository.findByName(name);
     if (workSessionsExists) {
       throw new AppError('There is already a work session with this name !!!');
     }
 
-    const workSessions = workSessionsRepository.create({
+    const workSessions = this.workSessionsRepository.create({
       name,
       description,
     });
-
-    await workSessionsRepository.save(workSessions);
     return workSessions;
   }
 }

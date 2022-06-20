@@ -23,12 +23,7 @@ interface ISendMail {
 }
 
 export class EtherealMail {
-  static async sendMail({
-    to,
-    from,
-    subject,
-    templateData,
-  }: ISendMail): Promise<void> {
+  static async sendMail({ to, from, subject, templateData }: ISendMail): Promise<void> {
     const account = await nodemailer.createTestAccount();
 
     const mailTemplate = new HandlebarsMailTemplate();

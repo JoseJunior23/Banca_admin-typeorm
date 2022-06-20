@@ -8,11 +8,7 @@ interface ITokenPayload {
   exp: number;
   sub: string;
 }
-export function isAuthenticated(
-  request: Request,
-  response: Response,
-  next: NextFunction,
-): void {
+export function isAuthenticated(request: Request, response: Response, next: NextFunction): void {
   const authHeader = request.headers.authorization;
   if (!authHeader) {
     throw new AppError('JWT Token is missing');

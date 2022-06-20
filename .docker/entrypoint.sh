@@ -1,5 +1,5 @@
 #!/bin/bash
 
 npm install
-npm run typeorm migration:run
+npm run typeorm  -d src/shared/typeorm/connection.ts migration:run
 npm run dev

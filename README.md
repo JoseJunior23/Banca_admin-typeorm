@@ -47,5 +47,3 @@ Utiliza-se o comando <font color = blue>docker-compose up </font>
 
 
 
-
-

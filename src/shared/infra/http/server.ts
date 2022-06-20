@@ -6,8 +6,10 @@ import 'express-async-errors';
 import { isError } from './middlewares/isError';
 import { routes } from './routes/index.routes';
 import '@shared/typeorm/connection';
+import '@shared/container';
 import upload from '@config/upload';
 import { errors } from 'celebrate';
+import { dataSource } from '../typeorm/connection';
 
 export const app = express();
 
@@ -18,6 +20,8 @@ app.use(routes);
 app.use(errors());
 
 app.use(isError);
-app.listen(3333, () => {
-  console.log('✅ Server started in http://localhost:3333');
+dataSource.initialize().then(() => {
+  app.listen(3333, () => {
+    console.log('✅ Server started in http://localhost:3333');
+  });
 });

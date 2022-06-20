@@ -1,14 +1,15 @@
+import { CreateWorkSessionsService } from '@modules/workSessions/services/CreateWorkSessionsService';
+import { DeleteWorkSessionsService } from '@modules/workSessions/services/DeleteworkSessionsService';
+import { ListWorkSessionsService } from '@modules/workSessions/services/ListWorkSessionsService';
+import { ShowWorkSessionsService } from '@modules/workSessions/services/ShowWorkSessionsService';
+import { UpdateWorkSessionsService } from '@modules/workSessions/services/UpdateWorkSessionsService';
 import { Request, Response } from 'express';
-import { CreateWorkSessionsService } from '../services/CreateWorkSessionsService';
-import { DeleteWorkSessionsService } from '../services/DeleteworkSessionsService';
-import { ListWorkSessionsService } from '../services/ListWorkSessionsService';
-import { ShowWorkSessionsService } from '../services/ShowWorkSessionsService';
-import { UpdateWorkSessionsService } from '../services/UpdateWorkSessionsService';
+import { container } from 'tsyringe';
 
 export class WorkSessionsController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body;
-    const createWorkSessions = new CreateWorkSessionsService();
+    const createWorkSessions = container.resolve(CreateWorkSessionsService);
     const workSessions = await createWorkSessions.execute({
       name,
       description,

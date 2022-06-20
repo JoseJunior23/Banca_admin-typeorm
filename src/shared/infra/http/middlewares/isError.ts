@@ -1,12 +1,7 @@
 import { AppError } from '@shared/errors/AppError';
 import { NextFunction, Request, Response } from 'express';
 
-export function isError(
-  error: Error,
-  request: Request,
-  response: Response,
-  next: NextFunction,
-) {
+export function isError(error: Error, request: Request, response: Response, next: NextFunction) {
   if (error instanceof AppError) {
     return response.status(error.statusCode).json({
       status: 'error',
