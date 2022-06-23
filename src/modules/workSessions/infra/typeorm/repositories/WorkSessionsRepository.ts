@@ -21,6 +21,15 @@ export class WorkSessionsRepository implements IWorkSessionsRepository {
     return workSessions;
   }
 
+  public async findAll(): Promise<WorkSessions[]> {
+    const workSessions = await this.ormRepository.find();
+    return workSessions;
+  }
+
+  public async remove(workSessions: WorkSessions): Promise<void> {
+    await this.ormRepository.remove(workSessions);
+  }
+
   public async findById(id: string): Promise<WorkSessions | null> {
     const workSessions = await this.ormRepository.findOneBy({ id });
     return workSessions;

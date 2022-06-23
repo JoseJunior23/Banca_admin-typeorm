@@ -1,5 +1,6 @@
 import { Teams } from '@modules/teams/entities/Teams';
-import { WorkSessions } from '@modules/workSessions/entities/WorkSessions';
+import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkSessions';
+
 import {
   Column,
   CreateDateColumn,

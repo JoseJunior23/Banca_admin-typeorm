@@ -1,11 +1,16 @@
-import { getCustomRepository } from 'typeorm';
-import { WorkSessions } from '../entities/WorkSessions';
-import { WorkSessionsRepository } from '../repositories/WorkSessionsRepository';
+import { inject, injectable } from 'tsyringe';
+import { IWorkSessionsRepository } from '../domain/repositories/IWorkSessionsRepository';
+import { WorkSessions } from '../infra/typeorm/entities/WorkSessions';
 
+@injectable()
 export class ListWorkSessionsService {
+  constructor(
+    @inject('WorkSessionsRepository')
+    private workSessionsRepository: IWorkSessionsRepository,
+  ) {}
+
   public async execute(): Promise<WorkSessions[]> {
-    const workSessionsRepository = getCustomRepository(WorkSessionsRepository);
-    const workSessions = await workSessionsRepository.find();
+    const workSessions = await this.workSessionsRepository.findAll();
     return workSessions;
   }
 }

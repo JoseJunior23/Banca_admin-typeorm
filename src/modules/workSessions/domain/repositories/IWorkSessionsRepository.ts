@@ -6,4 +6,6 @@ export interface IWorkSessionsRepository {
   findById(id: string): Promise<IWorkSession | null>;
   create(data: ICreateWorkSession): Promise<IWorkSession>;
   save(workSessions: IWorkSession): Promise<IWorkSession>;
+  findAll(): Promise<IWorkSession[]>;
+  remove(workSessions: IWorkSession): Promise<void>;
 }

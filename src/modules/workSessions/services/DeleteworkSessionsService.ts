@@ -1,20 +1,21 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { WorkSessionsRepository } from '../repositories/WorkSessionsRepository';
+import { inject, injectable } from 'tsyringe';
+import { IWorkSessionsId } from '../domain/models/IWorkSessionsId';
+import { IWorkSessionsRepository } from '../domain/repositories/IWorkSessionsRepository';
 
-interface IWorkSessions {
-  id: string;
-}
-
+@injectable()
 export class DeleteWorkSessionsService {
-  public async execute({ id }: IWorkSessions): Promise<void> {
-    const workSessionsRepository = getCustomRepository(WorkSessionsRepository);
+  constructor(
+    @inject('WorkSessionsRepository')
+    private workSessionsRepository: IWorkSessionsRepository,
+  ) {}
 
-    const workSessions = await workSessionsRepository.findById(id);
+  public async execute({ id }: IWorkSessionsId): Promise<void> {
+    const workSessions = await this.workSessionsRepository.findById(id);
     if (!workSessions) {
       throw new AppError('Work session not found !!!');
     }
 
-    await workSessionsRepository.remove(workSessions);
+    await this.workSessionsRepository.remove(workSessions);
   }
 }

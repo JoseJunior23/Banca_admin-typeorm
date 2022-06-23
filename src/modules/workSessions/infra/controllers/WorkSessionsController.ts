@@ -19,7 +19,7 @@ export class WorkSessionsController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const listWorkSessions = new ListWorkSessionsService();
+    const listWorkSessions = container.resolve(ListWorkSessionsService);
     const workSessions = await listWorkSessions.execute();
 
     return response.json(workSessions);
@@ -27,7 +27,7 @@ export class WorkSessionsController {
 
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const showWorkSession = new ShowWorkSessionsService();
+    const showWorkSession = container.resolve(ShowWorkSessionsService);
     const workSession = await showWorkSession.execute({ id });
     return response.json(workSession);
   }
@@ -35,7 +35,7 @@ export class WorkSessionsController {
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const { name, description } = request.body;
-    const updateWorkSession = new UpdateWorkSessionsService();
+    const updateWorkSession = container.resolve(UpdateWorkSessionsService);
 
     const workSessions = await updateWorkSession.execute({
       id,
@@ -49,7 +49,7 @@ export class WorkSessionsController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
 
-    const deleteWorkSession = new DeleteWorkSessionsService();
+    const deleteWorkSession = container.resolve(DeleteWorkSessionsService);
 
     await deleteWorkSession.execute({ id });
     return response.status(200).json({ message: 'Successfully deleted work session 👍' });
