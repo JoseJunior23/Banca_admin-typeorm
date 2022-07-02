@@ -1,31 +1,43 @@
-// import { WorkSessions } from '@modules/workSessions/entities/WorkSessions';
-// import { AppError } from '@shared/errors/AppError';
-// import { getCustomRepository } from 'typeorm';
-// import { Employee } from '../entities/Employee';
-// import { EmployeeRepository } from '../repositories/EmployeeRepository';
+import { IWorkSessionsRepository } from '@modules/workSessions/domain/repositories/IWorkSessionsRepository';
+import { AppError } from '@shared/errors/AppError';
+import { inject, injectable } from 'tsyringe';
+import { IEmployee } from '../domain/models/IEmployee';
+import { IUpdateEmployee } from '../domain/models/IUpdateEmployee';
+import { IEmployeeRepository } from '../domain/repositories/IEmployeeRepository';
 
-// interface IEmployee {
-//   id: string;
-//   name: string;
-//   nickname: string;
-//   phone: string;
-//   session: WorkSessions;
-// }
-// export class UpdateEmployeeService {
-//   public async execute({ id, name, nickname, phone, session }: IEmployee): Promise<Employee> {
-//     const employeeRepository = getCustomRepository(EmployeeRepository);
+@injectable()
+export class UpdateEmployeeService {
+  constructor(
+    @inject('EmployeeRepository')
+    private employeeRepository: IEmployeeRepository,
 
-//     const employee = await employeeRepository.findById(id);
-//     if (!employee) {
-//       throw new AppError('Employee not found !!!');
-//     }
+    @inject('WorkSessionsRepository')
+    private workSessionsRepository: IWorkSessionsRepository,
+  ) {}
 
-//     employee.name = name;
-//     employee.nickname = nickname;
-//     employee.phone = phone;
-//     employee.session = session;
+  public async execute({
+    id,
+    name,
+    nickname,
+    phone,
+    session,
+  }: IUpdateEmployee): Promise<IEmployee> {
+    const employee = await this.employeeRepository.findById(id);
+    if (!employee) {
+      throw new AppError('Employee not found !!!');
+    }
 
-//     await employeeRepository.save(employee);
-//     return employee;
-//   }
-// }
+    const sessionExists = await this.workSessionsRepository.findById(session.id);
+    if (!sessionExists) {
+      throw new AppError('Could not find any work session with the given id');
+    }
+
+    employee.name = name;
+    employee.nickname = nickname;
+    employee.phone = phone;
+    employee.session = session;
+
+    await this.employeeRepository.save(employee);
+    return employee;
+  }
+}

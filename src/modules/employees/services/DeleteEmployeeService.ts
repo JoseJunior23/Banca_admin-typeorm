@@ -1,20 +1,18 @@
-// import { AppError } from '@shared/errors/AppError';
-// import { getCustomRepository } from 'typeorm';
-// import { EmployeeRepository } from '../repositories/EmployeeRepository';
+import { AppError } from '@shared/errors/AppError';
+import { inject, injectable } from 'tsyringe';
+import { IEmployeeId } from '../domain/models/IEmployeeId';
+import { IEmployeeRepository } from '../domain/repositories/IEmployeeRepository';
 
-// interface IEmployee {
-//   id: string;
-// }
+@injectable()
+export class DeleteEmployeeService {
+  constructor(@inject('EmployeeRepository') private employeeRepository: IEmployeeRepository) {}
 
-// export class DeleteEmployeeService {
-//   public async execute({ id }: IEmployee): Promise<void> {
-//     const employeeRepository = getCustomRepository(EmployeeRepository);
+  public async execute({ id }: IEmployeeId): Promise<void> {
+    const employee = await this.employeeRepository.findById(id);
+    if (!employee) {
+      throw new AppError('Employee not found !!!');
+    }
 
-//     const employee = await employeeRepository.findById(id);
-//     if (!employee) {
-//       throw new AppError('Employee not found !!!');
-//     }
-
-//     await employeeRepository.remove(employee);
-//   }
-// }
+    await this.employeeRepository.remove(employee);
+  }
+}

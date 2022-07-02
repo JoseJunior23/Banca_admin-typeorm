@@ -1,11 +1,16 @@
-// import { getCustomRepository } from 'typeorm';
-// import { Employee } from '../entities/Employee';
-// import { EmployeeRepository } from '../repositories/EmployeeRepository';
+import { inject, injectable } from 'tsyringe';
+import { IEmployee } from '../domain/models/IEmployee';
+import { IEmployeeRepository } from '../domain/repositories/IEmployeeRepository';
 
-// export class ListEmployeeService {
-//   public async execute(): Promise<Employee[]> {
-//     const employeeRepository = getCustomRepository(EmployeeRepository);
-//     const employee = await employeeRepository.find();
-//     return employee;
-//   }
-// }
+@injectable()
+export class ListEmployeeService {
+  constructor(
+    @inject('EmployeeRepository')
+    private employeeRepository: IEmployeeRepository,
+  ) {}
+
+  public async execute(): Promise<IEmployee[]> {
+    const employee = await this.employeeRepository.findAll();
+    return employee;
+  }
+}
