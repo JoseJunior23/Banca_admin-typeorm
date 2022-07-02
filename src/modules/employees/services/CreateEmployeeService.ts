@@ -1,7 +1,7 @@
 import { IWorkSessionsRepository } from '@modules/workSessions/domain/repositories/IWorkSessionsRepository';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { IRequestCreateEmployee } from '../domain/models/IRequestCreateEmployee';
+import { ICreateEmployee } from '../domain/models/ICreateEmployee';
 import { IEmployeeRepository } from '../domain/repositories/IEmployeeRepository';
 import { Employee } from '../infra/typeorm/entities/Employee';
 
@@ -20,7 +20,7 @@ export default class createEmployeeService {
     nickname,
     phone,
     work_session_id,
-  }: IRequestCreateEmployee): Promise<Employee> {
+  }: ICreateEmployee): Promise<Employee> {
     const sessionExists = await this.workSessionsRepository.findById(work_session_id);
     if (!sessionExists) {
       throw new AppError('Could not find any work session with the given id');
