@@ -1,10 +1,8 @@
-import { Employee } from '@modules/employees/infra/typeorm/entities/Employee';
 import { IWorkSession } from '@modules/workSessions/domain/models/IworkSessions';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -26,8 +24,8 @@ export class WorkSessions implements IWorkSession {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToMany(() => Employee, employee => employee.session, {
-    cascade: true,
-  })
-  employee: Employee[];
+  // @OneToMany(() => Employee, employee => employee.session, {
+  //   cascade: true,
+  // })
+  // employee: Employee[];
 }

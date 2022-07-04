@@ -1,5 +1,3 @@
-import { IWorkSession } from '@modules/workSessions/domain/models/IworkSessions';
-
 export interface IEmployee {
   id: string;
   name: string;
@@ -7,5 +5,4 @@ export interface IEmployee {
   phone: string;
   created_at: Date;
   updated_at: Date;
-  session: IWorkSession;
 }

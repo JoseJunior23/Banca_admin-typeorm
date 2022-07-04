@@ -1,12 +1,9 @@
 import { IEmployee } from '@modules/employees/domain/models/IEmployee';
-import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkSessions';
 
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -25,9 +22,9 @@ export class Employee implements IEmployee {
   @Column()
   phone: string;
 
-  @ManyToOne(() => WorkSessions, session => session.employee, { eager: true })
-  @JoinColumn({ name: 'work_session_id' })
-  session: WorkSessions;
+  // @ManyToOne(() => WorkSessions, session => session.employee, { eager: true })
+  // @JoinColumn({ name: 'work_session_id' })
+  // session: WorkSessions;
 
   // @ManyToMany(() => Teams, team => team.employee)
   // @JoinTable({

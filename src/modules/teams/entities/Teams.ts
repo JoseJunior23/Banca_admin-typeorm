@@ -1,4 +1,4 @@
-import { Employee } from '@modules/employees/entities/Employee';
+import { Employee } from '@modules/employees/infra/typeorm/entities/Employee';
 import { ProductionDetail } from '@modules/production/productionDetail/entities/ProductionDetail';
 import {
   Column,
@@ -27,13 +27,13 @@ export class Teams {
   })
   prod_detail: ProductionDetail[];
 
-  @ManyToMany(() => Employee, employee => employee.team, { eager: true })
-  @JoinTable({
-    name: 'employee_teams',
-    joinColumns: [{ name: 'team_id' }],
-    inverseJoinColumns: [{ name: 'employee_id' }],
-  })
-  employee: Employee[];
+  // @ManyToMany(() => Employee, employee => employee.team, { eager: true })
+  // @JoinTable({
+  //   name: 'employee_teams',
+  //   joinColumns: [{ name: 'team_id' }],
+  //   inverseJoinColumns: [{ name: 'employee_id' }],
+  // })
+  // employee: Employee[];
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,5 +1,5 @@
 import uploadConfig from '@config/upload';
-import { isAuthenticated } from '@shared/http/middlewares/isAuthenticated';
+import { isAuthenticated } from '@shared/infra/http/middlewares/isAuthenticated';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import multer from 'multer';
@@ -26,9 +26,4 @@ userRouter.post(
   usersController.create,
 );
 
-userRouter.patch(
-  '/avatar',
-  isAuthenticated,
-  upload.single('avatar'),
-  usersAvatarController.update,
-);
+userRouter.patch('/avatar', isAuthenticated, upload.single('avatar'), usersAvatarController.update);

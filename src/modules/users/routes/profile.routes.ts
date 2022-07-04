@@ -1,4 +1,4 @@
-import { isAuthenticated } from '@shared/http/middlewares/isAuthenticated';
+import { isAuthenticated } from '@shared/infra/http/middlewares/isAuthenticated';
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import { ProfileController } from '../controllers/ProfileController';
@@ -18,12 +18,10 @@ profileRouter.put(
       email: Joi.string().email().required(),
       old_password: Joi.string(),
       password: Joi.string().optional(),
-      password_confirmation: Joi.string()
-        .valid(Joi.ref('password'))
-        .when('password', {
-          is: Joi.exist(),
-          then: Joi.required(),
-        }),
+      password_confirmation: Joi.string().valid(Joi.ref('password')).when('password', {
+        is: Joi.exist(),
+        then: Joi.required(),
+      }),
     },
   }),
   profileController.update,

@@ -1,4 +1,4 @@
-import createEmployeeService from '@modules/employees/services/CreateEmployeeService';
+import { CreateEmployeeService } from '@modules/employees/services/CreateEmployeeService';
 import { DeleteEmployeeService } from '@modules/employees/services/DeleteEmployeeService';
 import { ListEmployeeService } from '@modules/employees/services/ListEmployeeService';
 import { ShowEmployeeService } from '@modules/employees/services/ShowEmployeeService';
@@ -8,40 +8,45 @@ import { container } from 'tsyringe';
 
 export class EmployeeController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, nickname, phone, work_session_id } = request.body;
-    const createEmployee = container.resolve(createEmployeeService);
+    const { name, nickname, phone } = request.body;
+    const createEmployee = container.resolve(CreateEmployeeService);
+
     const employee = await createEmployee.execute({
       name,
       nickname,
       phone,
-      work_session_id,
     });
-    return response.json(employee);
+
+    return response.status(201).json(employee);
   }
+
   public async index(request: Request, response: Response): Promise<Response> {
     const listEmployee = container.resolve(ListEmployeeService);
     const employee = await listEmployee.execute();
-    return response.json(employee);
+    return response.status(200).json(employee);
   }
+
   public async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
     const showEmployee = container.resolve(ShowEmployeeService);
     const employee = await showEmployee.execute({ id });
-    return response.json(employee);
+    return response.status(200).json(employee);
   }
+
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, nickname, phone, session } = request.body;
+    const { name, nickname, phone } = request.body;
+
     const updateEmployee = container.resolve(UpdateEmployeeService);
     const employee = await updateEmployee.execute({
       id,
       name,
       nickname,
       phone,
-      session,
     });
-    return response.json(employee);
+    return response.status(200).json(employee);
   }
+
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
     const deleteEmployee = container.resolve(DeleteEmployeeService);

@@ -5,7 +5,7 @@ import express from 'express';
 import 'express-async-errors';
 import { isError } from './middlewares/isError';
 import { routes } from './routes/index.routes';
-import '@shared/typeorm/connection';
+import '@shared/infra/typeorm/connection';
 import '@shared/container';
 import upload from '@config/upload';
 import { errors } from 'celebrate';
@@ -17,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(upload.directory));
 app.use(routes);
+
 app.use(errors());
 
 app.use(isError);
