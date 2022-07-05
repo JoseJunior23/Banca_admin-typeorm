@@ -13,6 +13,7 @@ employeeRouter.post(
       name: Joi.string().required(),
       nickname: Joi.string().required(),
       phone: Joi.string().required(),
+      session: Joi.string().optional(),
     },
   }),
   employeeController.create,

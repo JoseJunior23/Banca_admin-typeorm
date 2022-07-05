@@ -10,8 +10,8 @@ export class EmployeeRepository implements IEmployeeRepository {
     this.ormRepository = dataSource.getRepository(Employee);
   }
 
-  public async create({ name, nickname, phone }: ICreateEmployee): Promise<Employee> {
-    const employee = this.ormRepository.create({ name, nickname, phone });
+  public async create({ name, nickname, phone, session }: ICreateEmployee): Promise<Employee> {
+    const employee = this.ormRepository.create({ name, nickname, phone, session });
     await this.ormRepository.save(employee);
     return employee;
   }

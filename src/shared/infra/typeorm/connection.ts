@@ -4,6 +4,7 @@ import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkS
 import { DataSource } from 'typeorm';
 
 import { CreateWorkSession1646092650188 } from './migrations/1646092650188-CreateWorkSession';
+import { CreateAddWorkSessionEmployee1646434774918 } from './migrations/1646434774918-CreateAddWorkSessionEmployee';
 import { CreateEmployee1656871061048 } from './migrations/1656871061048-CreateEmployee';
 
 export const dataSource = new DataSource({
@@ -30,6 +31,6 @@ export const dataSource = new DataSource({
     // CreateUserTokens1644972400015,
     CreateWorkSession1646092650188,
     CreateEmployee1656871061048,
-    // CreateAddWorkSessionEmployee1646434774918,
+    CreateAddWorkSessionEmployee1646434774918,
   ],
 });
