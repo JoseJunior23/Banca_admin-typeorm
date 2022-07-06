@@ -1,4 +1,5 @@
 import { IEmployee } from '@modules/employees/domain/models/IEmployee';
+import { Teams } from '@modules/teams/infra/typeorm/entities/Teams';
 import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkSessions';
 
 import {
@@ -6,6 +7,8 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -29,13 +32,13 @@ export class Employee implements IEmployee {
   @JoinColumn({ name: 'work_session_id' })
   session: WorkSessions;
 
-  // @ManyToMany(() => Teams, team => team.employee)
-  // @JoinTable({
-  //   name: 'employee_teams',
-  //   joinColumns: [{ name: 'employee_id' }],
-  //   inverseJoinColumns: [{ name: 'team_id' }],
-  // })
-  // team: Teams[];
+  @ManyToMany(() => Teams, team => team.employee)
+  @JoinTable({
+    name: 'employee_teams',
+    joinColumns: [{ name: 'employee_id' }],
+    inverseJoinColumns: [{ name: 'team_id' }],
+  })
+  team: Teams[];
 
   @CreateDateColumn()
   created_at: Date;

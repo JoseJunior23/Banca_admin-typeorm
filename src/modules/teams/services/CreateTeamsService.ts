@@ -1,28 +1,26 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { Teams } from '../entities/Teams';
-import { TeamsRepository } from '../repositories/TeamsRepository';
+import { inject, injectable } from 'tsyringe';
+import { ICreateTeams } from '../domain/models/ICreateTeams';
+import { ITeams } from '../domain/models/ITeams';
+import { ITeamsRepository } from '../domain/repositories/ITeamsRepository';
 
-interface ITeam {
-  name: string;
-  description: string;
-}
-
+@injectable()
 export class CreateTeamsService {
-  public async execute({ name, description }: ITeam): Promise<Teams> {
-    const teamRepository = getCustomRepository(TeamsRepository);
+  constructor(
+    @inject('TeamsRepository')
+    private teamsRepository: ITeamsRepository,
+  ) {}
 
-    const teamExists = await teamRepository.findByName(name);
+  public async execute({ name, description }: ICreateTeams): Promise<ITeams> {
+    const teamExists = await this.teamsRepository.findByName(name);
     if (teamExists) {
       throw new AppError('There is a team registered with this name !!!');
     }
 
-    const teams = teamRepository.create({
+    const teams = this.teamsRepository.create({
       name,
       description,
     });
-
-    await teamRepository.save(teams);
     return teams;
   }
 }
