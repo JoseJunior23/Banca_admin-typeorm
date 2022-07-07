@@ -1,19 +1,17 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { Teams } from '../entities/Teams';
-import { TeamsRepository } from '../repositories/TeamsRepository';
+import { inject, injectable } from 'tsyringe';
+import { ITeams } from '../domain/models/ITeams';
+import { ITeamsRepository } from '../domain/repositories/ITeamsRepository';
 
-interface ITeam {
-  id: string;
-  name: string;
-  description: string;
-}
-
+@injectable()
 export class UpdateTeamService {
-  public async execute({ id, name, description }: ITeam): Promise<Teams> {
-    const teamRepository = getCustomRepository(TeamsRepository);
+  constructor(
+    @inject('TeamsRepository')
+    private teamsRepository: ITeamsRepository,
+  ) {}
 
-    const team = await teamRepository.findById(id);
+  public async execute({ id, name, description }: ITeams): Promise<ITeams> {
+    const team = await this.teamsRepository.findById(id);
     if (!team) {
       throw new AppError('Team not found !!!');
     }
@@ -21,7 +19,7 @@ export class UpdateTeamService {
     team.name = name;
     team.description = description;
 
-    await teamRepository.save(team);
+    await this.teamsRepository.save(team);
     return team;
   }
 }

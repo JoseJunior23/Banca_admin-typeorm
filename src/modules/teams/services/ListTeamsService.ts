@@ -1,13 +1,16 @@
-import { getCustomRepository } from 'typeorm';
-import { Teams } from '../entities/Teams';
-import { TeamsRepository } from '../repositories/TeamsRepository';
+import { inject, injectable } from 'tsyringe';
+import { ITeams } from '../domain/models/ITeams';
+import { ITeamsRepository } from '../domain/repositories/ITeamsRepository';
 
+@injectable()
 export class ListTeamsService {
-  public async execute(): Promise<Teams[]> {
-    const teamsRepository = getCustomRepository(TeamsRepository);
+  constructor(
+    @inject('TeamsRepository')
+    private teamsRepository: ITeamsRepository,
+  ) {}
 
-    const team = await teamsRepository.find();
-
-    return team;
+  public async execute(): Promise<ITeams[]> {
+    const teams = await this.teamsRepository.findAll();
+    return teams;
   }
 }

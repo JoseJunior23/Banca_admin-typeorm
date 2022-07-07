@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
+import { IWorkSession } from '../domain/models/IworkSessions';
 import { IWorkSessionsRepository } from '../domain/repositories/IWorkSessionsRepository';
-import { WorkSessions } from '../infra/typeorm/entities/WorkSessions';
 
 @injectable()
 export class ListWorkSessionsService {
@@ -9,7 +9,7 @@ export class ListWorkSessionsService {
     private workSessionsRepository: IWorkSessionsRepository,
   ) {}
 
-  public async execute(): Promise<WorkSessions[]> {
+  public async execute(): Promise<IWorkSession[]> {
     const workSessions = await this.workSessionsRepository.findAll();
     return workSessions;
   }

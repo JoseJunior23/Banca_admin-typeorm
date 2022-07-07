@@ -1,8 +1,8 @@
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IUpdateWorkSession } from '../domain/models/IUpdateWorkSessions';
+import { IWorkSession } from '../domain/models/IworkSessions';
 import { IWorkSessionsRepository } from '../domain/repositories/IWorkSessionsRepository';
-import { WorkSessions } from '../infra/typeorm/entities/WorkSessions';
 
 @injectable()
 export class UpdateWorkSessionsService {
@@ -11,7 +11,7 @@ export class UpdateWorkSessionsService {
     private workSessionsRepository: IWorkSessionsRepository,
   ) {}
 
-  public async execute({ id, name, description }: IUpdateWorkSession): Promise<WorkSessions> {
+  public async execute({ id, name, description }: IUpdateWorkSession): Promise<IWorkSession> {
     const workSessions = await this.workSessionsRepository.findById(id);
     if (!workSessions) {
       throw new AppError('Work session not found !!!');
