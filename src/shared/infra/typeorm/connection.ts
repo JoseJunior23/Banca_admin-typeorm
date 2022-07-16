@@ -1,4 +1,5 @@
 import { Employee } from '@modules/employees/infra/typeorm/entities/Employee';
+import { Factory } from '@modules/factory/infra/typeorm/entities/Factory';
 import { Teams } from '@modules/teams/infra/typeorm/entities/Teams';
 import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkSessions';
 
@@ -8,6 +9,7 @@ import { CreateWorkSession1646092650188 } from './migrations/1646092650188-Creat
 import { CreateAddWorkSessionEmployee1646434774918 } from './migrations/1646434774918-CreateAddWorkSessionEmployee';
 import { CreateTeams1646958469701 } from './migrations/1646958469701-CreateTeams';
 import { CreateEmployeeTeams1647303210741 } from './migrations/1647303210741-CreateEmployeeTeams';
+import { CreateFactory1647562966675 } from './migrations/1647562966675-CreateFactory';
 import { CreateEmployee1656871061048 } from './migrations/1656871061048-CreateEmployee';
 
 export const dataSource = new DataSource({
@@ -17,7 +19,7 @@ export const dataSource = new DataSource({
   username: 'teste',
   password: 'teste',
   database: 'bancaAdmin',
-  entities: [WorkSessions, Employee, Teams],
+  entities: [WorkSessions, Employee, Teams, Factory],
   migrations: [
     // CreateAddFactoryModel1648506235426,
     // CreateAddFactoryProductionPlan1648509080827,
@@ -25,7 +27,7 @@ export const dataSource = new DataSource({
     // CreateAddProductionDetailTeams1648511621355,
     // CreateAddProductionPlanProductionDetail1648510244495,
     CreateEmployeeTeams1647303210741,
-    // CreateFactory1647562966675,
+    CreateFactory1647562966675,
     // CreateProductionDetail1647483310364,
     // CreateProductionPlan1647385966340,
     // CreateShoesModel1648166135123,

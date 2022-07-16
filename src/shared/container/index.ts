@@ -1,5 +1,7 @@
 import { IEmployeeRepository } from '@modules/employees/domain/repositories/IEmployeeRepository';
 import { EmployeeRepository } from '@modules/employees/infra/typeorm/repositories/EmployeeRepository';
+import { IFactoryRepository } from '@modules/factory/domain/repositories/IFactoryRepository';
+import { FactoryRepository } from '@modules/factory/infra/typeorm/repositories/FactoryRepository';
 import { ITeamsRepository } from '@modules/teams/domain/repositories/ITeamsRepository';
 import { TeamsRepository } from '@modules/teams/infra/typeorm/repositories/TeamsRepository';
 import { IWorkSessionsRepository } from '@modules/workSessions/domain/repositories/IWorkSessionsRepository';
@@ -14,3 +16,5 @@ container.registerSingleton<IWorkSessionsRepository>(
 container.registerSingleton<IEmployeeRepository>('EmployeeRepository', EmployeeRepository);
 
 container.registerSingleton<ITeamsRepository>('TeamsRepository', TeamsRepository);
+
+container.registerSingleton<IFactoryRepository>('FactoryRepository', FactoryRepository);

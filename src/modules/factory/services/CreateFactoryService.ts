@@ -1,30 +1,27 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { Factory } from '../entities/Factory';
-import { FactoryRepository } from '../repositories/FactoryRepository';
+import { inject, injectable } from 'tsyringe';
+import { ICreateFactory } from '../domain/models/ICreateFactory';
+import { IFactory } from '../domain/models/IFactory';
+import { IFactoryRepository } from '../domain/repositories/IFactoryRepository';
 
-interface Ifactory {
-  corporate_name: string;
-  fantasy_name: string;
-  phone: string;
-}
-
+@injectable()
 export class CreateFactoryService {
-  public async execute({ corporate_name, fantasy_name, phone }: Ifactory): Promise<Factory> {
-    const factoryRepository = getCustomRepository(FactoryRepository);
+  constructor(
+    @inject('FactoryRepository')
+    private factoryRepository: IFactoryRepository,
+  ) {}
 
-    const factoryExists = await factoryRepository.findByName(corporate_name);
+  public async execute({ company_name, fantasy_name, phone }: ICreateFactory): Promise<IFactory> {
+    const factoryExists = await this.factoryRepository.findByName(company_name);
     if (factoryExists) {
       throw new AppError('There is a factory with this name !!!');
     }
 
-    const factory = factoryRepository.create({
-      corporate_name,
+    const factory = this.factoryRepository.create({
+      company_name,
       fantasy_name,
       phone,
     });
-
-    await factoryRepository.save(factory);
 
     return factory;
   }

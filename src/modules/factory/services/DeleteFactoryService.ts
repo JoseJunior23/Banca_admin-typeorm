@@ -1,19 +1,21 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { FactoryRepository } from '../repositories/FactoryRepository';
+import { inject, injectable } from 'tsyringe';
+import { IFactoryId } from '../domain/models/IFactoryId';
+import { IFactoryRepository } from '../domain/repositories/IFactoryRepository';
 
-interface IFactory {
-  id: string;
-}
+@injectable()
 export class DeleteFactoryService {
-  public async execute({ id }: IFactory) {
-    const factoryRepository = getCustomRepository(FactoryRepository);
+  constructor(
+    @inject('FactoryRepository')
+    private factoryRepository: IFactoryRepository,
+  ) {}
 
-    const factory = await factoryRepository.findById(id);
+  public async execute({ id }: IFactoryId) {
+    const factory = await this.factoryRepository.findById(id);
     if (!factory) {
       throw new AppError('Factory not found !!!');
     }
 
-    await factoryRepository.remove(factory);
+    await this.factoryRepository.remove(factory);
   }
 }

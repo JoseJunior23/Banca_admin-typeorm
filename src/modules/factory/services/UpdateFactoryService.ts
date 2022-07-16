@@ -1,28 +1,32 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { Factory } from '../entities/Factory';
-import { FactoryRepository } from '../repositories/FactoryRepository';
+import { inject, injectable } from 'tsyringe';
+import { IFactory } from '../domain/models/IFactory';
+import { IUpdateFactory } from '../domain/models/IUpdateFactory';
+import { IFactoryRepository } from '../domain/repositories/IFactoryRepository';
 
-interface IFactory {
-  id: string;
-  corporate_name: string;
-  fantasy_name: string;
-  phone: string;
-}
+@injectable()
 export class UpdateFactoryService {
-  public async execute({ id, corporate_name, fantasy_name, phone }: IFactory): Promise<Factory> {
-    const factoryRepository = getCustomRepository(FactoryRepository);
+  constructor(
+    @inject('FactoryRepository')
+    private factoryRepository: IFactoryRepository,
+  ) {}
 
-    const factory = await factoryRepository.findById(id);
+  public async execute({
+    id,
+    company_name,
+    fantasy_name,
+    phone,
+  }: IUpdateFactory): Promise<IFactory> {
+    const factory = await this.factoryRepository.findById(id);
     if (!factory) {
       throw new AppError('Factory not found !!!');
     }
 
-    factory.corporate_name = corporate_name;
+    factory.company_name = company_name;
     factory.fantasy_name = fantasy_name;
     factory.phone = phone;
 
-    await factoryRepository.save(factory);
+    await this.factoryRepository.save(factory);
     return factory;
   }
 }

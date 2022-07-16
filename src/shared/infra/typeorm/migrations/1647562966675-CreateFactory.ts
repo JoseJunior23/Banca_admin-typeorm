@@ -15,7 +15,7 @@ export class CreateFactory1647562966675 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'corporate_name',
+            name: 'company_name',
             type: 'varchar',
           },
           {

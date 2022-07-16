@@ -1,11 +1,15 @@
-import { getCustomRepository } from 'typeorm';
-import { Factory } from '../entities/Factory';
-import { FactoryRepository } from '../repositories/FactoryRepository';
+import { inject, injectable } from 'tsyringe';
+import { IFactory } from '../domain/models/IFactory';
+import { IFactoryRepository } from '../domain/repositories/IFactoryRepository';
 
+@injectable()
 export class ListFactoryService {
-  public async execute(): Promise<Factory[]> {
-    const factoryRepository = getCustomRepository(FactoryRepository);
-    const factory = await factoryRepository.find();
+  constructor(
+    @inject('FactoryRepository')
+    private factoryRepository: IFactoryRepository,
+  ) {}
+  public async execute(): Promise<IFactory[]> {
+    const factory = await this.factoryRepository.findAll();
     return factory;
   }
 }
