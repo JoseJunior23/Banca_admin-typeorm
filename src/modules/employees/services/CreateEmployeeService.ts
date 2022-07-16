@@ -25,6 +25,7 @@ export class CreateEmployeeService {
     if (employeeExists) {
       throw new AppError('There is already a employee with this name !!!');
     }
+
     const sessionExists = await this.workSessionsRepository.findById(work_session_id);
     if (!sessionExists) {
       throw new AppError('Work session not found !!!');

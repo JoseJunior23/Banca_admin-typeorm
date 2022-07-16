@@ -27,7 +27,10 @@ export class TeamsRepository implements ITeamsRepository {
   }
 
   public async findById(id: string): Promise<Teams | null> {
-    const team = this.ormRepository.findOneBy({ id });
+    const team = this.ormRepository.findOne({
+      where: { id },
+      relations: ['employee', 'plan_detail'],
+    });
     return team;
   }
 
