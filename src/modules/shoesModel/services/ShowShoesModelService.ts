@@ -1,17 +1,18 @@
 import { AppError } from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
-import { ShoesModel } from '../entities/ShoesModel';
-import { ShoesModelRepository } from '../repositories/ShoesModelRepostories';
+import { inject, injectable } from 'tsyringe';
+import { IShoesModel } from '../domain/models/IShoesModel';
+import { IShoesModelId } from '../domain/models/IShoesModelId';
+import { IShoesModelRepository } from '../domain/repositories/IShoesModelRepository';
 
-interface IShoesModel {
-  id: string;
-}
-
+@injectable()
 export class ShowShoesModelService {
-  public async execute({ id }: IShoesModel): Promise<ShoesModel> {
-    const shoesModelRepository = getCustomRepository(ShoesModelRepository);
+  constructor(
+    @inject('ShoesModelRepository')
+    private shoesModelRepository: IShoesModelRepository,
+  ) {}
 
-    const shoesModel = await shoesModelRepository.findById(id);
+  public async execute({ id }: IShoesModelId): Promise<IShoesModel> {
+    const shoesModel = await this.shoesModelRepository.findById(id);
     if (!shoesModel) {
       throw new AppError('Shoes model not found !!!');
     }

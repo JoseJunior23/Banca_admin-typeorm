@@ -1,8 +1,12 @@
 import { IFactory } from '@modules/factory/domain/models/IFactory';
+import { PlanInfo } from '@modules/plans/planInfo/infra/typeorm/entities/PlanInfo';
+import { ShoesModel } from '@modules/shoesModel/infra/typeorm/entities/ShoesModel';
+
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -27,13 +31,13 @@ export class Factory implements IFactory {
   @UpdateDateColumn()
   updated_at: Date;
 
-  // @OneToMany(() => ProductionPlan, prod_plan => prod_plan.factory, {
-  //   cascade: true,
-  // })
-  // prod_plan: ProductionPlan[];
+  @OneToMany(() => PlanInfo, plan_info => plan_info.factory, {
+    cascade: true,
+  })
+  plan_info: PlanInfo[];
 
-  // @OneToMany(() => ShoesModel, model => model.factory, {
-  //   cascade: true,
-  // })
-  // model: ShoesModel[];
+  @OneToMany(() => ShoesModel, model => model.factory, {
+    cascade: true,
+  })
+  model: ShoesModel[];
 }
