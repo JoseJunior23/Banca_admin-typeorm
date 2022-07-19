@@ -1,4 +1,5 @@
 import { Factory } from '@modules/factory/infra/typeorm/entities/Factory';
+import { PlanDetail } from '@modules/plans/planDetail/infra/typeorm/entities/PlanDetail';
 import { IPlanInfo } from '@modules/plans/planInfo/domain/models/IPlanInfo';
 import {
   Column,
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -37,8 +39,8 @@ export class PlanInfo implements IPlanInfo {
   @JoinColumn({ name: 'factory_id' })
   factory: Factory;
 
-  // @OneToMany(() => ProductionDetail, prod_detail => prod_detail.prod_plan, {
-  //   cascade: true,
-  // })
-  // prod_detail: ProductionDetail[];
+  @OneToMany(() => PlanDetail, plan_detail => plan_detail.plan_info, {
+    cascade: true,
+  })
+  plan_detail: PlanDetail[];
 }

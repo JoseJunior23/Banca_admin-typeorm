@@ -1,3 +1,3 @@
-export interface IPlanDetail {
+export interface IPlanDetailId {
   id: string;
 }

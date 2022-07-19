@@ -1,4 +1,5 @@
 import { Factory } from '@modules/factory/infra/typeorm/entities/Factory';
+import { PlanDetail } from '@modules/plans/planDetail/infra/typeorm/entities/PlanDetail';
 import { IShoesModel } from '@modules/shoesModel/domain/models/IShoesModel';
 import {
   Column,
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -30,10 +32,10 @@ export class ShoesModel implements IShoesModel {
   @Column('float')
   price_coladeira: number;
 
-  // @OneToMany(() => ProductionDetail, prod_detail => prod_detail.model, {
-  //   cascade: true,
-  // })
-  // prod_detail: ProductionDetail[];
+  @OneToMany(() => PlanDetail, plan_detail => plan_detail.model, {
+    cascade: true,
+  })
+  plan_detail: PlanDetail[];
 
   @ManyToOne(() => Factory, factory => factory.model, { eager: true })
   @JoinColumn({ name: 'factory_id' })

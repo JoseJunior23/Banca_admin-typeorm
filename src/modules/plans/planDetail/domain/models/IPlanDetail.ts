@@ -1,3 +1,5 @@
+import { IPlanInfo } from '@modules/plans/planInfo/domain/models/IPlanInfo';
+import { IShoesModel } from '@modules/shoesModel/domain/models/IShoesModel';
 import { ITeams } from '@modules/teams/domain/models/ITeams';
 
 export interface IPlanDetail {
@@ -7,11 +9,11 @@ export interface IPlanDetail {
   production_sheet: number;
   number_pairs: number;
   billed: number;
-  billed_date: number;
+  billed_date: Date;
   payment_date: Date;
   team: ITeams;
-  // prod_plan: string;
-  // model: string;
+  plan_info: IPlanInfo;
+  model: IShoesModel;
   created_at: Date;
   updated_at: Date;
 }

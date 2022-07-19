@@ -2,6 +2,8 @@ import { IEmployeeRepository } from '@modules/employees/domain/repositories/IEmp
 import { EmployeeRepository } from '@modules/employees/infra/typeorm/repositories/EmployeeRepository';
 import { IFactoryRepository } from '@modules/factory/domain/repositories/IFactoryRepository';
 import { FactoryRepository } from '@modules/factory/infra/typeorm/repositories/FactoryRepository';
+import { IPlanDetailRepository } from '@modules/plans/planDetail/domain/repositories/IPlandetailRepository';
+import { PlanDetailRepository } from '@modules/plans/planDetail/infra/typeorm/repositories/PlanDetailRepository';
 import { IPlanInfoRepository } from '@modules/plans/planInfo/domain/repositories/IPlanInfoRepository';
 import { PlanInfoRepository } from '@modules/plans/planInfo/infra/typeorm/repositories/PlanInfoRepository';
 import { IShoesModelRepository } from '@modules/shoesModel/domain/repositories/IShoesModelRepository';
@@ -26,3 +28,5 @@ container.registerSingleton<IFactoryRepository>('FactoryRepository', FactoryRepo
 container.registerSingleton<IShoesModelRepository>('ShoesModelRepository', ShoesModelRepository);
 
 container.registerSingleton<IPlanInfoRepository>('PlanInfoRepository', PlanInfoRepository);
+
+container.registerSingleton<IPlanDetailRepository>('PlanDetailRepository', PlanDetailRepository);
