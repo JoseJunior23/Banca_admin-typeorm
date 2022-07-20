@@ -1,12 +1,12 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
-import { ProductionDetailController } from '../controllers/productionDetailController';
+import { PlanDetailController } from '../controllers/planDetailController';
 
-export const productionDetailRouter = Router();
+export const planDetailRouter = Router();
 
-const productionDetailController = new ProductionDetailController();
+const planDetailController = new PlanDetailController();
 
-productionDetailRouter.post(
+planDetailRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
@@ -18,26 +18,26 @@ productionDetailRouter.post(
       billed_date: Joi.date().required(),
       payment_date: Joi.date().required(),
       team: Joi.string().uuid().required(),
-      prod_plan: Joi.string().uuid().required(),
+      plan_info: Joi.string().uuid().required(),
       model: Joi.string().uuid().required(),
     },
   }),
-  productionDetailController.create,
+  planDetailController.create,
 );
 
-productionDetailRouter.get('/', productionDetailController.index);
+planDetailRouter.get('/', planDetailController.index);
 
-productionDetailRouter.get(
+planDetailRouter.get(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().required(),
     },
   }),
-  productionDetailController.show,
+  planDetailController.show,
 );
 
-productionDetailRouter.put(
+planDetailRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
@@ -48,20 +48,23 @@ productionDetailRouter.put(
       billed: Joi.number().required(),
       billed_date: Joi.date().required(),
       payment_date: Joi.date().required(),
+      team: Joi.string().uuid().required(),
+      plan_info: Joi.string().uuid().required(),
+      model: Joi.string().uuid().required(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().required(),
     },
   }),
-  productionDetailController.update,
+  planDetailController.update,
 );
 
-productionDetailRouter.delete(
+planDetailRouter.delete(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().required(),
     },
   }),
-  productionDetailController.delete,
+  planDetailController.delete,
 );

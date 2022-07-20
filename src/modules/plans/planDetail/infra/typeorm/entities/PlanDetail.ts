@@ -49,7 +49,7 @@ export class PlanDetail implements IPlanDetail {
   team: Teams;
 
   @ManyToOne(() => PlanInfo, plan => plan.plan_detail, { eager: true })
-  @JoinColumn({ name: 'production_plan_id' })
+  @JoinColumn({ name: 'plan_info_id' })
   plan_info: PlanInfo;
 
   @ManyToOne(() => ShoesModel, model => model.plan_detail, { eager: true })

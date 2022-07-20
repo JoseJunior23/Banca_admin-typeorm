@@ -1,5 +1,6 @@
 import { Employee } from '@modules/employees/infra/typeorm/entities/Employee';
 import { Factory } from '@modules/factory/infra/typeorm/entities/Factory';
+import { PlanDetail } from '@modules/plans/planDetail/infra/typeorm/entities/PlanDetail';
 import { PlanInfo } from '@modules/plans/planInfo/infra/typeorm/entities/PlanInfo';
 import { ShoesModel } from '@modules/shoesModel/infra/typeorm/entities/ShoesModel';
 import { Teams } from '@modules/teams/infra/typeorm/entities/Teams';
@@ -12,10 +13,14 @@ import { CreateAddWorkSessionEmployee1646434774918 } from './migrations/16464347
 import { CreateTeams1646958469701 } from './migrations/1646958469701-CreateTeams';
 import { CreateEmployeeTeams1647303210741 } from './migrations/1647303210741-CreateEmployeeTeams';
 import { CreatePlanInfo1647385966340 } from './migrations/1647385966340-CreatePlanInfo';
+import { CreatePlanDetail1647483310364 } from './migrations/1647483310364-CreatePlanDetail';
 import { CreateFactory1647562966675 } from './migrations/1647562966675-CreateFactory';
 import { CreateShoesModel1648166135123 } from './migrations/1648166135123-CreateShoesModel';
 import { CreateAddFactoryModel1648506235426 } from './migrations/1648506235426-CreateAddFactoryModel';
 import { CreateAddFactoryPlanInfo1648509080827 } from './migrations/1648509080827-CreateAddFactoryPlanInfo';
+import { CreateAddPlanInfoPlanDetail1648510244495 } from './migrations/1648510244495-CreateAddPlanInfoPlanDetail';
+import { CreateAddPlanDetailModel1648510904722 } from './migrations/1648510904722-CreateAddPlanDetailModel';
+import { CreateAddPlanDetailTeams1648511621355 } from './migrations/1648511621355-CreateAddPlanDetailTeams';
 import { CreateEmployee1656871061048 } from './migrations/1656871061048-CreateEmployee';
 
 export const dataSource = new DataSource({
@@ -25,16 +30,16 @@ export const dataSource = new DataSource({
   username: 'teste',
   password: 'teste',
   database: 'bancaAdmin',
-  entities: [WorkSessions, Employee, Teams, Factory, ShoesModel, PlanInfo],
+  entities: [WorkSessions, Employee, Teams, Factory, ShoesModel, PlanInfo, PlanDetail],
   migrations: [
     CreateAddFactoryModel1648506235426,
     CreateAddFactoryPlanInfo1648509080827,
-    // CreateAddProductionDetailModel1648510904722,
-    // CreateAddProductionDetailTeams1648511621355,
-    // CreateAddProductionPlanProductionDetail1648510244495,
+    CreateAddPlanDetailModel1648510904722,
+    CreateAddPlanDetailTeams1648511621355,
+    CreateAddPlanInfoPlanDetail1648510244495,
     CreateEmployeeTeams1647303210741,
     CreateFactory1647562966675,
-    // CreateProductionDetail1647483310364,
+    CreatePlanDetail1647483310364,
     CreatePlanInfo1647385966340,
     CreateShoesModel1648166135123,
     CreateTeams1646958469701,

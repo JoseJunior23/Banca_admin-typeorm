@@ -1,9 +1,9 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
-export class CreateAddProductionDetailModel1648510904722 implements MigrationInterface {
+export class CreateAddPlanDetailModel1648510904722 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      'production_detail',
+      'plan_detail',
       new TableColumn({
         name: 'shoes_model_id',
         type: 'uuid',
@@ -12,9 +12,9 @@ export class CreateAddProductionDetailModel1648510904722 implements MigrationInt
     );
 
     await queryRunner.createForeignKey(
-      'production_detail',
+      'plan_detail',
       new TableForeignKey({
-        name: 'fk_production_detail_model',
+        name: 'fk_plan_detail_model',
         columnNames: ['shoes_model_id'],
         referencedTableName: 'shoes_model',
         referencedColumnNames: ['id'],
@@ -24,7 +24,7 @@ export class CreateAddProductionDetailModel1648510904722 implements MigrationInt
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('production_detail', 'fk_production_detail_model'),
-      await queryRunner.dropColumn('production_detail', 'shoes_model_id');
+    await queryRunner.dropForeignKey('plan_detail', 'fk_plan_detail_model'),
+      await queryRunner.dropColumn('plan_detail', 'shoes_model_id');
   }
 }

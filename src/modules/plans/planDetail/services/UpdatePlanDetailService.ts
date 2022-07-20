@@ -8,7 +8,7 @@ import { IUpdatePlanDetail } from '../domain/models/IUpdatePlanDetail';
 import { IPlanDetailRepository } from '../domain/repositories/IPlandetailRepository';
 
 @injectable()
-export class UpdateProductionDetailService {
+export class UpdatePlanDetailService {
   constructor(
     @inject('PlanDetailRepository')
     private planDetailRepository: IPlanDetailRepository,
