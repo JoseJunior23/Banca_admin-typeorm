@@ -1,12 +1,9 @@
-import { Employee } from '@modules/employees/infra/typeorm/entities/Employee';
 import { PlanDetail } from '@modules/plans/planDetail/infra/typeorm/entities/PlanDetail';
 import { ITeams } from '@modules/teams/domain/models/ITeams';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -34,11 +31,8 @@ export class Teams implements ITeams {
   })
   plan_detail: PlanDetail[];
 
-  @ManyToMany(() => Employee, employee => employee.team, { eager: true })
-  @JoinTable({
-    name: 'employee_teams',
-    joinColumns: [{ name: 'team_id' }],
-    inverseJoinColumns: [{ name: 'employee_id' }],
-  })
-  employee: Employee[];
+  // @OneToMany(() => EmployeeTeam, employee_team => employee_team.team, {
+  //   cascade: true,
+  // })
+  // employee_team: EmployeeTeam[];
 }

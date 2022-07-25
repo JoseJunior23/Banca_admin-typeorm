@@ -11,8 +11,8 @@ export class TeamsRepository implements ITeamsRepository {
     this.ormRepository = dataSource.getRepository(Teams);
   }
 
-  public async create({ name, description, employee }: ICreateTeams): Promise<Teams> {
-    const team = this.ormRepository.create({ name, description, employee });
+  public async create({ name, description }: ICreateTeams): Promise<Teams> {
+    const team = this.ormRepository.create({ name, description });
     await this.ormRepository.save(team);
     return team;
   }

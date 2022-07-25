@@ -9,7 +9,6 @@ import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkS
 import { DataSource } from 'typeorm';
 
 import { CreateWorkSession1646092650188 } from './migrations/1646092650188-CreateWorkSession';
-import { CreateAddWorkSessionEmployee1646434774918 } from './migrations/1646434774918-CreateAddWorkSessionEmployee';
 import { CreateTeams1646958469701 } from './migrations/1646958469701-CreateTeams';
 import { CreateEmployeeTeams1647303210741 } from './migrations/1647303210741-CreateEmployeeTeams';
 import { CreatePlanInfo1647385966340 } from './migrations/1647385966340-CreatePlanInfo';
@@ -22,6 +21,9 @@ import { CreateAddPlanInfoPlanDetail1648510244495 } from './migrations/164851024
 import { CreateAddPlanDetailModel1648510904722 } from './migrations/1648510904722-CreateAddPlanDetailModel';
 import { CreateAddPlanDetailTeams1648511621355 } from './migrations/1648511621355-CreateAddPlanDetailTeams';
 import { CreateEmployee1656871061048 } from './migrations/1656871061048-CreateEmployee';
+import { CreateAddEmployeeIdEmployeeTeam1658706212133 } from './migrations/1658706212133-CreateAddEmployeeIdEmployeeTeam';
+import { CreateAddTeamIdEmployeeTeam1658706535265 } from './migrations/1658706535265-CreateAddTeamIdEmployeeTeam';
+import { CreateAddWorkSessionEmployee1658707744327 } from './migrations/1658707744327-CreateAddWorkSessionEmployee';
 
 export const dataSource = new DataSource({
   type: 'postgres',
@@ -47,6 +49,8 @@ export const dataSource = new DataSource({
     // CreateUserTokens1644972400015,
     CreateWorkSession1646092650188,
     CreateEmployee1656871061048,
-    CreateAddWorkSessionEmployee1646434774918,
+    CreateAddEmployeeIdEmployeeTeam1658706212133,
+    CreateAddTeamIdEmployeeTeam1658706535265,
+    CreateAddWorkSessionEmployee1658707744327,
   ],
 });

@@ -14,14 +14,6 @@ export class CreateEmployeeTeams1647303210741 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'employee_id',
-            type: 'uuid',
-          },
-          {
-            name: 'team_id',
-            type: 'uuid',
-          },
-          {
             name: 'created_at',
             type: 'timestamp with time zone',
             default: 'now()',
@@ -30,24 +22,6 @@ export class CreateEmployeeTeams1647303210741 implements MigrationInterface {
             name: 'updated_at',
             type: 'timestamp with time zone',
             default: 'now()',
-          },
-        ],
-        foreignKeys: [
-          {
-            name: 'fk_employee_team',
-            referencedTableName: 'employees',
-            referencedColumnNames: ['id'],
-            columnNames: ['employee_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-          {
-            name: 'fk_team_employee',
-            referencedTableName: 'teams',
-            referencedColumnNames: ['id'],
-            columnNames: ['team_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
           },
         ],
       }),
