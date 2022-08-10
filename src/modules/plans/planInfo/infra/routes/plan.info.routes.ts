@@ -13,7 +13,6 @@ planInfoRouter.post(
       description: Joi.string().required(),
       entry_date: Joi.date().required(),
       factory_plan: Joi.number().required(),
-      factory: Joi.string().uuid().required(),
     },
   }),
   planInfoController.create,
@@ -39,7 +38,6 @@ planInfoRouter.put(
       description: Joi.string().required(),
       entry_date: Joi.date().required(),
       factory_plan: Joi.number().required(),
-      factory: Joi.string().uuid().required(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),

@@ -8,7 +8,9 @@ import { IPlanInfoRepository } from '@modules/plans/planInfo/domain/repositories
 import { PlanInfoRepository } from '@modules/plans/planInfo/infra/typeorm/repositories/PlanInfoRepository';
 import { IShoesModelRepository } from '@modules/shoesModel/domain/repositories/IShoesModelRepository';
 import { ShoesModelRepository } from '@modules/shoesModel/infra/typeorm/repositories/ShoesModelRepostories';
+import { ITeamsEmployeeRepository } from '@modules/teams/domain/repositories/ITeamsEmployeeRepository';
 import { ITeamsRepository } from '@modules/teams/domain/repositories/ITeamsRepository';
+import { TeamEmployeesRepository } from '@modules/teams/infra/typeorm/repositories/TeamEmployeesRepository';
 import { TeamsRepository } from '@modules/teams/infra/typeorm/repositories/TeamsRepository';
 import { IWorkSessionsRepository } from '@modules/workSessions/domain/repositories/IWorkSessionsRepository';
 import { WorkSessionsRepository } from '@modules/workSessions/infra/typeorm/repositories/WorkSessionsRepository';
@@ -22,6 +24,11 @@ container.registerSingleton<IWorkSessionsRepository>(
 container.registerSingleton<IEmployeeRepository>('EmployeeRepository', EmployeeRepository);
 
 container.registerSingleton<ITeamsRepository>('TeamsRepository', TeamsRepository);
+
+container.registerSingleton<ITeamsEmployeeRepository>(
+  'TeamEmployeeRepository',
+  TeamEmployeesRepository,
+);
 
 container.registerSingleton<IFactoryRepository>('FactoryRepository', FactoryRepository);
 

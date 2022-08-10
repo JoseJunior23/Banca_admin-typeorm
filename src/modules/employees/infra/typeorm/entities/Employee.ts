@@ -7,11 +7,9 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { EmployeeTeam } from './EmployeeTeams';
 
 @Entity('employees')
 export class Employee implements IEmployee {
@@ -30,11 +28,6 @@ export class Employee implements IEmployee {
   @ManyToOne(() => WorkSessions, session => session.employee, { eager: true })
   @JoinColumn({ name: 'work_session_id' })
   session: WorkSessions;
-
-  // @OneToMany(() => EmployeeTeam, employee_team => employee_team.employee, {
-  //   cascade: true,
-  // })
-  // employee_team: EmployeeTeam[];
 
   @CreateDateColumn()
   created_at: Date;

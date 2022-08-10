@@ -1,10 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateEmployeeTeams1647303210741 implements MigrationInterface {
+export class CreateTeamEmployees1659223904496 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'employee_teams',
+        name: 'team_employees',
         columns: [
           {
             name: 'id',
@@ -27,8 +28,7 @@ export class CreateEmployeeTeams1647303210741 implements MigrationInterface {
       }),
     );
   }
-
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('employee_teams');
+    await queryRunner.dropTable('team_employees');
   }
 }

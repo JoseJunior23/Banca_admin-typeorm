@@ -1,5 +1,3 @@
-import { IFactory } from '@modules/factory/domain/models/IFactory';
-
 export interface IPlanInfo {
   id: string;
   variation: string;
@@ -8,5 +6,4 @@ export interface IPlanInfo {
   factory_plan: number;
   created_at: Date;
   updated_at: Date;
-  factory: IFactory;
 }

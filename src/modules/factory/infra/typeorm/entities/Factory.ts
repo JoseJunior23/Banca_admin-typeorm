@@ -1,5 +1,4 @@
 import { IFactory } from '@modules/factory/domain/models/IFactory';
-import { PlanInfo } from '@modules/plans/planInfo/infra/typeorm/entities/PlanInfo';
 import { ShoesModel } from '@modules/shoesModel/infra/typeorm/entities/ShoesModel';
 
 import {
@@ -30,11 +29,6 @@ export class Factory implements IFactory {
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @OneToMany(() => PlanInfo, plan_info => plan_info.factory, {
-    cascade: true,
-  })
-  plan_info: PlanInfo[];
 
   @OneToMany(() => ShoesModel, model => model.factory, {
     cascade: true,

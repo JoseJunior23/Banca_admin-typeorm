@@ -14,14 +14,12 @@ export class PlanInfoRepository implements IPlanInfoRepository {
     variation,
     description,
     entry_date,
-    factory,
     factory_plan,
   }: ICreatePlanInfo): Promise<PlanInfo> {
     const planInfo = this.ormRepository.create({
       variation,
       description,
       entry_date,
-      factory,
       factory_plan,
     });
     await this.ormRepository.save(planInfo);

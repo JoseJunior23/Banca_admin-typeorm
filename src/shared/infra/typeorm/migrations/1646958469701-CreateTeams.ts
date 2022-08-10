@@ -16,7 +16,6 @@ export class CreateTeams1646958469701 implements MigrationInterface {
           {
             name: 'name',
             type: 'varchar',
-            isUnique: true,
           },
           {
             name: 'description',

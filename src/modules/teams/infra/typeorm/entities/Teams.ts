@@ -20,19 +20,14 @@ export class Teams implements ITeams {
   @Column()
   description: string;
 
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
   @OneToMany(() => PlanDetail, plan_detail => plan_detail.team, {
     cascade: true,
   })
   plan_detail: PlanDetail[];
 
-  // @OneToMany(() => EmployeeTeam, employee_team => employee_team.team, {
-  //   cascade: true,
-  // })
-  // employee_team: EmployeeTeam[];
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }

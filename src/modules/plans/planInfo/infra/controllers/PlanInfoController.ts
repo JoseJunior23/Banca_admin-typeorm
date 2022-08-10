@@ -8,14 +8,13 @@ import { UpdatePlanInfoService } from '../../services/UpdatePlanInfoService';
 
 export class PlanInfoController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { variation, description, entry_date, factory_plan, factory } = request.body;
+    const { variation, description, entry_date, factory_plan } = request.body;
     const createPlanInfo = container.resolve(CreatePlanInfoService);
     const planInfo = await createPlanInfo.execute({
       variation,
       description,
       entry_date,
       factory_plan,
-      factory,
     });
     return response.json(planInfo);
   }
@@ -35,14 +34,13 @@ export class PlanInfoController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { variation, description, entry_date, factory, factory_plan } = request.body;
+    const { variation, description, entry_date, factory_plan } = request.body;
     const updatePlanInfo = container.resolve(UpdatePlanInfoService);
     const planInfo = await updatePlanInfo.execute({
       id,
       variation,
       description,
       entry_date,
-      factory,
       factory_plan,
     });
     return response.json(planInfo);

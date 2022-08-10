@@ -1,12 +1,9 @@
-import { Factory } from '@modules/factory/infra/typeorm/entities/Factory';
 import { PlanDetail } from '@modules/plans/planDetail/infra/typeorm/entities/PlanDetail';
 import { IPlanInfo } from '@modules/plans/planInfo/domain/models/IPlanInfo';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -34,10 +31,6 @@ export class PlanInfo implements IPlanInfo {
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @ManyToOne(() => Factory, factory => factory.plan_info, { eager: true })
-  @JoinColumn({ name: 'factory_id' })
-  factory: Factory;
 
   @OneToMany(() => PlanDetail, plan_detail => plan_detail.plan_info, {
     cascade: true,
