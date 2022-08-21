@@ -11,8 +11,8 @@ export class EmployeeRepository implements IEmployeeRepository {
     this.ormRepository = dataSource.getRepository(Employee);
   }
 
-  public async create({ name, nickname, phone, session }: ICreateEmployee): Promise<Employee> {
-    const employee = this.ormRepository.create({ name, nickname, phone, session });
+  public async create({ name, nickname, phone, work_section }: ICreateEmployee): Promise<Employee> {
+    const employee = this.ormRepository.create({ name, nickname, phone, work_section });
     await this.ormRepository.save(employee);
     return employee;
   }
@@ -29,7 +29,7 @@ export class EmployeeRepository implements IEmployeeRepository {
   public async findById(id: string): Promise<Employee | null> {
     const employee = await this.ormRepository.findOne({
       where: { id },
-      relations: ['team', 'session'],
+      relations: ['team', 'section'],
     });
     return employee;
   }

@@ -1,4 +1,4 @@
-import { IWorkSessionsRepository } from '@modules/workSessions/domain/repositories/IWorkSessionsRepository';
+import { IWorkSectionRepository } from '@modules/workSections/domain/repositories/IWorkSectionRepository';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import { IEmployee } from '../domain/models/IEmployee';
@@ -11,23 +11,23 @@ export class CreateEmployeeService {
     @inject('EmployeeRepository')
     private employeeRepository: IEmployeeRepository,
 
-    @inject('WorkSessionsRepository')
-    private workSessionsRepository: IWorkSessionsRepository,
+    @inject('WorkSectionRepository')
+    private workSectionRepository: IWorkSectionRepository,
   ) {}
 
   public async execute({
     name,
     nickname,
     phone,
-    work_session_id,
+    work_section_id,
   }: IRequestCreateEmployee): Promise<IEmployee> {
     const employeeExists = await this.employeeRepository.findByName(nickname);
     if (employeeExists) {
       throw new AppError('There is already a employee with this name !!!');
     }
 
-    const sessionExists = await this.workSessionsRepository.findById(work_session_id);
-    if (!sessionExists) {
+    const sectionExists = await this.workSectionRepository.findById(work_section_id);
+    if (!sectionExists) {
       throw new AppError('Work session not found !!!');
     }
 
@@ -35,7 +35,7 @@ export class CreateEmployeeService {
       name,
       nickname,
       phone,
-      session: sessionExists,
+      session: sectionExists,
     });
     return employee;
   }

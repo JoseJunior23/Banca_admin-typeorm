@@ -1,5 +1,5 @@
 import { IEmployee } from '@modules/employees/domain/models/IEmployee';
-import { WorkSessions } from '@modules/workSessions/infra/typeorm/entities/WorkSessions';
+import { WorkSection } from '@modules/workSections/infra/typeorm/entities/WorkSection';
 
 import {
   Column,
@@ -16,18 +16,18 @@ export class Employee implements IEmployee {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'text' })
   name: string;
 
-  @Column()
+  @Column({ type: 'text' })
   nickname: string;
 
-  @Column()
+  @Column({ type: 'text' })
   phone: string;
 
-  @ManyToOne(() => WorkSessions, session => session.employee, { eager: true })
-  @JoinColumn({ name: 'work_session_id' })
-  session: WorkSessions;
+  @ManyToOne(() => WorkSection, work_section => work_section.employees)
+  @JoinColumn({ name: 'work_section_id' })
+  work_section: WorkSection;
 
   @CreateDateColumn()
   created_at: Date;

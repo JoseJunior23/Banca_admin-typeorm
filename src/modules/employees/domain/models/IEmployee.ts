@@ -1,11 +1,11 @@
-import { IWorkSession } from '@modules/workSessions/domain/models/IworkSessions';
+import { IWorkSection } from '@modules/workSections/domain/models/IWorkSection';
 
 export interface IEmployee {
   id: string;
   name: string;
   nickname: string;
   phone: string;
-  session: IWorkSession;
+  work_section: IWorkSection;
   created_at: Date;
   updated_at: Date;
 }

@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateWorkSession1646092650188 implements MigrationInterface {
+export class CreateWorkSection1646092650188 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'work_sessions',
+        name: 'work_sections',
         columns: [
           {
             name: 'id',
@@ -39,6 +39,6 @@ export class CreateWorkSession1646092650188 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('work_sessions');
+    await queryRunner.dropTable('work_sections');
   }
 }

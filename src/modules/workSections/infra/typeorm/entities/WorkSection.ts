@@ -1,5 +1,5 @@
 import { Employee } from '@modules/employees/infra/typeorm/entities/Employee';
-import { IWorkSession } from '@modules/workSessions/domain/models/IworkSessions';
+import { IWorkSection } from '@modules/workSections/domain/models/IWorkSection';
 import {
   Column,
   CreateDateColumn,
@@ -9,25 +9,25 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('work_sessions')
-export class WorkSessions implements IWorkSession {
+@Entity('work_sections')
+export class WorkSection implements IWorkSection {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
+  @Column({ type: 'text' })
   name: string;
 
-  @Column()
+  @Column({ type: 'text', nullable: true })
   description: string;
+
+  @OneToMany(() => Employee, employees => employees.work_section, {
+    cascade: true,
+  })
+  employees: Employee[];
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @OneToMany(() => Employee, employee => employee.session, {
-    cascade: true,
-  })
-  employee: Employee[];
 }

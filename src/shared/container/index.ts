@@ -12,13 +12,13 @@ import { ITeamsEmployeeRepository } from '@modules/teams/domain/repositories/ITe
 import { ITeamsRepository } from '@modules/teams/domain/repositories/ITeamsRepository';
 import { TeamEmployeesRepository } from '@modules/teams/infra/typeorm/repositories/TeamEmployeesRepository';
 import { TeamsRepository } from '@modules/teams/infra/typeorm/repositories/TeamsRepository';
-import { IWorkSessionsRepository } from '@modules/workSessions/domain/repositories/IWorkSessionsRepository';
-import { WorkSessionsRepository } from '@modules/workSessions/infra/typeorm/repositories/WorkSessionsRepository';
+import { IWorkSectionRepository } from '@modules/workSections/domain/repositories/IWorkSectionRepository';
+import { WorkSectionRepository } from '@modules/workSections/infra/typeorm/repositories/WorkSessionsRepository';
 import { container } from 'tsyringe';
 
-container.registerSingleton<IWorkSessionsRepository>(
-  'WorkSessionsRepository',
-  WorkSessionsRepository,
+container.registerSingleton<IWorkSectionRepository>(
+  'WorkSectionsRepository',
+  WorkSectionRepository,
 );
 
 container.registerSingleton<IEmployeeRepository>('EmployeeRepository', EmployeeRepository);

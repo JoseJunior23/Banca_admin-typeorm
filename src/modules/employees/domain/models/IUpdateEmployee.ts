@@ -3,5 +3,5 @@ export interface IUpdateEmployee {
   name: string;
   nickname: string;
   phone: string;
-  session: string;
+  work_section: string;
 }

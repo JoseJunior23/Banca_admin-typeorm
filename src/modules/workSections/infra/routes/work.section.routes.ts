@@ -1,14 +1,14 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
-import { WorkSessionsController } from '../controllers/WorkSessionsController';
+import { WorkSectionController } from '../controllers/WorkSessionsController';
 
-export const workSessionsRouter = Router();
+export const workSectionRouter = Router();
 
-const workSessionsController = new WorkSessionsController();
+const workSectionController = new WorkSectionController();
 
-workSessionsRouter.get('/', workSessionsController.index);
+workSectionRouter.get('/', workSectionController.index);
 
-workSessionsRouter.post(
+workSectionRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: {
@@ -16,20 +16,20 @@ workSessionsRouter.post(
       description: Joi.string(),
     },
   }),
-  workSessionsController.create,
+  workSectionController.create,
 );
 
-workSessionsRouter.get(
+workSectionRouter.get(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
   }),
-  workSessionsController.show,
+  workSectionController.show,
 );
 
-workSessionsRouter.put(
+workSectionRouter.put(
   '/:id',
   celebrate({
     [Segments.BODY]: {
@@ -40,15 +40,15 @@ workSessionsRouter.put(
       id: Joi.string().uuid().required(),
     },
   }),
-  workSessionsController.update,
+  workSectionController.update,
 );
 
-workSessionsRouter.delete(
+workSectionRouter.delete(
   '/:id',
   celebrate({
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),
     },
   }),
-  workSessionsController.delete,
+  workSectionController.delete,
 );

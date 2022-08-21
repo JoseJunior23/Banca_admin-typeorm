@@ -1,4 +1,4 @@
-export interface ICreateWorkSession {
+export interface ICreateWorkSection {
   name: string;
   description?: string;
 }

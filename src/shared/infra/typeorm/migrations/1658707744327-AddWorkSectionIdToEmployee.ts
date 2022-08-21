@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
-export class CreateAddWorkSessionEmployee1658707744327 implements MigrationInterface {
+export class AddWorkSectionIdToEmployee1658707744327 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
       'employees',
       new TableColumn({
-        name: 'work_session_id',
+        name: 'work_section_id',
         type: 'uuid',
         isNullable: true,
       }),
@@ -14,9 +14,9 @@ export class CreateAddWorkSessionEmployee1658707744327 implements MigrationInter
     await queryRunner.createForeignKey(
       'employees',
       new TableForeignKey({
-        name: 'fk_worksession_employees',
-        columnNames: ['work_session_id'],
-        referencedTableName: 'work_sessions',
+        name: 'fk_worksection_employees',
+        columnNames: ['work_section_id'],
+        referencedTableName: 'work_sections',
         referencedColumnNames: ['id'],
         onDelete: 'SET NULL',
       }),
@@ -24,7 +24,7 @@ export class CreateAddWorkSessionEmployee1658707744327 implements MigrationInter
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('employees', 'fk_worksession_employees');
-    await queryRunner.dropColumn('employees', 'work_session_id');
+    await queryRunner.dropForeignKey('employees', 'fk_worksection_employees');
+    await queryRunner.dropColumn('employees', 'work_section_id');
   }
 }

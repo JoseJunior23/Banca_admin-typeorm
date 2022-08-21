@@ -1,4 +1,4 @@
-export interface IWorkSession {
+export interface IWorkSection {
   id: string;
   name: string;
   description: string;

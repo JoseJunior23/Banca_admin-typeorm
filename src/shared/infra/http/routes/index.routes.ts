@@ -5,7 +5,7 @@ import { planInfoRouter } from '@modules/plans/planInfo/infra/routes/plan.info.r
 import { shoesModelRouter } from '@modules/shoesModel/infra/routes/shoes_model.routes';
 import { teamsRouter } from '@modules/teams/infra/routes/teams.routes';
 import { teamsEmployeeRouter } from '@modules/teams/infra/routes/teams_employee.routes';
-import { workSessionsRouter } from '@modules/workSessions/infra/routes/work.sessions.routes';
+import { workSectionRouter } from '@modules/workSections/infra/routes/work.section.routes';
 
 import { Router } from 'express';
 
@@ -15,7 +15,7 @@ export const routes = Router();
 // routes.use('/sessions', sessionsRouter);
 // routes.use('/password', passwordRouter);
 // routes.use('/profile', profileRouter);
-routes.use('/work-sessions', workSessionsRouter);
+routes.use('/work-section', workSectionRouter);
 routes.use('/employee', employeeRouter);
 routes.use('/teams', teamsRouter);
 routes.use('/team-employee', teamsEmployeeRouter);
