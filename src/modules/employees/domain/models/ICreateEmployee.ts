@@ -4,5 +4,5 @@ export interface ICreateEmployee {
   name: string;
   nickname: string;
   phone: string;
-  work_section: IWorkSection;
+  section: IWorkSection;
 }

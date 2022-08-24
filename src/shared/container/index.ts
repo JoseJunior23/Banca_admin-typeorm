@@ -16,10 +16,7 @@ import { IWorkSectionRepository } from '@modules/workSections/domain/repositorie
 import { WorkSectionRepository } from '@modules/workSections/infra/typeorm/repositories/WorkSessionsRepository';
 import { container } from 'tsyringe';
 
-container.registerSingleton<IWorkSectionRepository>(
-  'WorkSectionsRepository',
-  WorkSectionRepository,
-);
+container.registerSingleton<IWorkSectionRepository>('WorkSectionRepository', WorkSectionRepository);
 
 container.registerSingleton<IEmployeeRepository>('EmployeeRepository', EmployeeRepository);
 
