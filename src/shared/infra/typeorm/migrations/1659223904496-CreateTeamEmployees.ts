@@ -5,30 +5,11 @@ export class CreateTeamEmployees1659223904496 implements MigrationInterface {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryRunner.createTable(
       new Table({
-        name: 'team_employees',
-        columns: [
-          {
-            name: 'id',
-            type: 'uuid',
-            isPrimary: true,
-            generationStrategy: 'uuid',
-            default: 'uuid_generate_v4()',
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp with time zone',
-            default: 'now()',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp with time zone',
-            default: 'now()',
-          },
-        ],
+        name: 'teams_employees',
       }),
     );
   }
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('team_employees');
+    await queryRunner.dropTable('teams_employees');
   }
 }

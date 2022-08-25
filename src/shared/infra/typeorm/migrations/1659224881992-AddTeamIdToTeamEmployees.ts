@@ -1,9 +1,9 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
-export class CreateAddTeamIdToTeamEmployees1659224881992 implements MigrationInterface {
+export class AddTeamIdToTeamEmployees1659224881992 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      'team_employees',
+      'teams_employees',
       new TableColumn({
         name: 'team_id',
         type: 'uuid',
@@ -12,7 +12,7 @@ export class CreateAddTeamIdToTeamEmployees1659224881992 implements MigrationInt
     );
 
     await queryRunner.createForeignKey(
-      'team_employees',
+      'teams_employees',
       new TableForeignKey({
         name: 'fk_team_team_employees',
         columnNames: ['team_id'],
@@ -24,7 +24,7 @@ export class CreateAddTeamIdToTeamEmployees1659224881992 implements MigrationInt
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('team_employees', 'fk_team_team_employees');
-    await queryRunner.dropColumn('team_employees', 'team_id');
+    await queryRunner.dropForeignKey('teams_employees', 'fk_team_team_employees');
+    await queryRunner.dropColumn('teams_employees', 'team_id');
   }
 }

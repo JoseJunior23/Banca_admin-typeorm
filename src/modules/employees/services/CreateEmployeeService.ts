@@ -19,23 +19,23 @@ export class CreateEmployeeService {
     name,
     nickname,
     phone,
-    section,
+    work_section,
   }: IRequestCreateEmployee): Promise<IEmployee> {
     const employeeExists = await this.employeeRepository.findByName(nickname);
     if (employeeExists) {
       throw new AppError('There is already a employee with this name !!!');
     }
 
-    const sectionExists = await this.workSectionRepository.findById(section);
+    const sectionExists = await this.workSectionRepository.findById(work_section);
     if (!sectionExists) {
-      throw new AppError('Work session not found !!!');
+      throw new AppError('Work section not found !!!');
     }
 
     const employee = await this.employeeRepository.create({
       name,
       nickname,
       phone,
-      section: sectionExists,
+      work_section: sectionExists,
     });
     return employee;
   }

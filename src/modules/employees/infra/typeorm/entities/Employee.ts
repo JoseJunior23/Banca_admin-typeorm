@@ -25,7 +25,7 @@ export class Employee implements IEmployee {
   @Column({ type: 'text' })
   phone: string;
 
-  @ManyToOne(() => WorkSection, work_section => work_section.employees)
+  @ManyToOne(() => WorkSection, work_section => work_section.employees, { eager: true })
   @JoinColumn({ name: 'work_section_id' })
   work_section: WorkSection;
 
