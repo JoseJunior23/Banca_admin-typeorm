@@ -13,7 +13,7 @@ employeeRouter.post(
       name: Joi.string().required(),
       nickname: Joi.string().required(),
       phone: Joi.string().required(),
-      section: Joi.string().optional(),
+      work_section: Joi.string().uuid(),
     },
   }),
   employeeController.create,
@@ -38,6 +38,7 @@ employeeRouter.put(
       name: Joi.string().optional(),
       nickname: Joi.string().optional(),
       phone: Joi.string().optional(),
+      work_section: Joi.string().uuid(),
     },
     [Segments.PARAMS]: {
       id: Joi.string().uuid().required(),

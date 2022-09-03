@@ -7,9 +7,7 @@ import { CreateEmployee1656871061048 } from './migrations/1656871061048-CreateEm
 import { AddWorkSectionIdToEmployee1658707744327 } from './migrations/1658707744327-AddWorkSectionIdToEmployee';
 import { Teams } from '@modules/teams/infra/typeorm/entities/Teams';
 import { CreateTeams1646958469701 } from './migrations/1646958469701-CreateTeams';
-import { CreateTeamEmployees1659223904496 } from './migrations/1659223904496-CreateTeamEmployees';
-import { AddEmployeeIdToTeamsEmployees1659224605505 } from './migrations/1659224605505-AddEmployeeIdToTeamEmployees';
-import { AddTeamIdToTeamEmployees1659224881992 } from './migrations/1659224881992-AddTeamIdToTeamEmployees';
+import { CreateTeamsEmployees1661818387913 } from './migrations/1661818387913-CreateTeamsEmployees';
 
 const port = process.env.DB_PORT as number | undefined;
 
@@ -26,8 +24,6 @@ export const dataSource = new DataSource({
     CreateEmployee1656871061048,
     AddWorkSectionIdToEmployee1658707744327,
     CreateTeams1646958469701,
-    CreateTeamEmployees1659223904496,
-    AddEmployeeIdToTeamsEmployees1659224605505,
-    AddTeamIdToTeamEmployees1659224881992,
+    CreateTeamsEmployees1661818387913,
   ],
 });

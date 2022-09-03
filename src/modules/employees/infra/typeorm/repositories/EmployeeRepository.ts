@@ -27,10 +27,7 @@ export class EmployeeRepository implements IEmployeeRepository {
   }
 
   public async findById(id: string): Promise<Employee | null> {
-    const employee = await this.ormRepository.findOne({
-      where: { id },
-      relations: ['team', 'section'],
-    });
+    const employee = await this.ormRepository.findOneBy({ id });
     return employee;
   }
 

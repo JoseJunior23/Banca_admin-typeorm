@@ -11,6 +11,7 @@ teamsRouter.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       description: Joi.string(),
+      employees: Joi.required(),
     },
   }),
   teamsController.create,

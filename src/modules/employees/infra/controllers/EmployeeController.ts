@@ -8,13 +8,14 @@ import { container } from 'tsyringe';
 
 export class EmployeeController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, nickname, phone } = request.body;
+    const { name, nickname, phone, work_section } = request.body;
     const createEmployee = container.resolve(CreateEmployeeService);
 
     const employee = await createEmployee.execute({
       name,
       nickname,
       phone,
+      work_section,
     });
 
     return response.status(201).json(employee);
@@ -35,7 +36,7 @@ export class EmployeeController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
-    const { name, nickname, phone } = request.body;
+    const { name, nickname, phone, work_section } = request.body;
 
     const updateEmployee = container.resolve(UpdateEmployeeService);
     const employee = await updateEmployee.execute({
@@ -43,6 +44,7 @@ export class EmployeeController {
       name,
       nickname,
       phone,
+      work_section,
     });
     return response.status(200).json(employee);
   }

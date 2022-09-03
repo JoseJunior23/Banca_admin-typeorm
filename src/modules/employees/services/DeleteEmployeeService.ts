@@ -9,6 +9,7 @@ export class DeleteEmployeeService {
     @inject('EmployeeRepository')
     private employeeRepository: IEmployeeRepository,
   ) {}
+
   public async execute({ id }: IEmployeeId): Promise<void> {
     const employee = await this.employeeRepository.findById(id);
     if (!employee) {

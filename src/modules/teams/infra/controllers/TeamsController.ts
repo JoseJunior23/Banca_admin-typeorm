@@ -7,11 +7,12 @@ import { container } from 'tsyringe';
 
 export class TeamController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, description } = request.body;
+    const { name, description, employees } = request.body;
     const createTeam = container.resolve(CreateTeamsService);
     const team = await createTeam.execute({
       name,
       description,
+      employees,
     });
     return response.json(team);
   }

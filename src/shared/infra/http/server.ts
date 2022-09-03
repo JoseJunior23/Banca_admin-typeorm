@@ -22,7 +22,7 @@ dataSource.initialize().then(() => {
   app.use(errors());
 
   app.use(isError);
-  app.listen(process.env.PORT, () => {
+  return app.listen(process.env.PORT, () => {
     console.log('✅ The Server is running !!!');
   });
 });

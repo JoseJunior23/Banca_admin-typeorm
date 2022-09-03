@@ -11,8 +11,8 @@ export class TeamsRepository implements ITeamsRepository {
     this.ormRepository = dataSource.getRepository(Teams);
   }
 
-  public async create({ name, description }: ICreateTeams): Promise<Teams> {
-    const team = this.ormRepository.create({ name, description });
+  public async create({ name, description, employees }: ICreateTeams): Promise<Teams> {
+    const team = this.ormRepository.create({ name, description, employees });
     await this.ormRepository.save(team);
     return team;
   }
@@ -27,9 +27,8 @@ export class TeamsRepository implements ITeamsRepository {
   }
 
   public async findById(id: string): Promise<Teams | null> {
-    const team = this.ormRepository.findOne({
-      where: { id },
-      relations: ['employee', 'plan_detail'],
+    const team = this.ormRepository.findOneBy({
+      id,
     });
     return team;
   }
