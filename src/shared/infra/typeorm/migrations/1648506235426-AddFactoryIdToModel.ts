@@ -1,22 +1,22 @@
 import { MigrationInterface, QueryRunner, TableColumn, TableForeignKey } from 'typeorm';
 
-export class CreateAddPlanInfoPlanDetail1648510244495 implements MigrationInterface {
+export class AddFactoryIdToModel1648506235426 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn(
-      'plan_detail',
+      'shoes_model',
       new TableColumn({
-        name: 'plan_info_id',
+        name: 'factory_id',
         type: 'uuid',
         isNullable: true,
       }),
     );
 
     await queryRunner.createForeignKey(
-      'plan_detail',
+      'shoes_model',
       new TableForeignKey({
-        name: 'fk_plan_info_detail',
-        columnNames: ['plan_info_id'],
-        referencedTableName: 'plan_info',
+        name: 'fk_factory_model',
+        columnNames: ['factory_id'],
+        referencedTableName: 'factory',
         referencedColumnNames: ['id'],
         onDelete: 'SET NULL',
       }),
@@ -24,7 +24,7 @@ export class CreateAddPlanInfoPlanDetail1648510244495 implements MigrationInterf
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('plan_detail', 'fk_plan_info_detail');
-    await queryRunner.dropColumn('plan_detail', 'plan_info_id');
+    await queryRunner.dropForeignKey('shoes_model', 'fk_factory_model');
+    await queryRunner.dropColumn('shoes_model', 'factory_id');
   }
 }
